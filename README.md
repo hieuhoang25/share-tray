@@ -116,6 +116,9 @@ AUTH_SECRET=share-tray-dev-secret-key-at-least-32-chars-long
 USD_RATE=26000              # Tỷ giá quy đổi VND -> USD
 ```
 
+### Triển khai lên Netlify:
+Dự án đã có sẵn file cấu hình `netlify.toml` ở thư mục gốc chứa cấu hình build và các biến môi trường mặc định. Bạn chỉ cần liên kết repository trên [Netlify](https://www.netlify.com/) và bấm **Deploy**.
+
 ---
 
 ## 6. Tài khoản Seed Demo & Đăng nhập

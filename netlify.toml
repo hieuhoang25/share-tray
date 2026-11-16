@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
+  DATA_SOURCE = "mock"
+  DEMO_MODE = "true"
+  MOCK_LATENCY_MS = "0"
+  AUTH_SECRET = "share-tray-dev-secret-key-at-least-32-chars-long"
+  USD_RATE = "26000"
