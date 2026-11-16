@@ -32,6 +32,7 @@ yarn-error.log*
 
 # agent internal
 .agent-shell/
+.git-repo/
 
 # env files
 .env*.local

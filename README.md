@@ -155,7 +155,6 @@ npm run build
 
 ## 9. Danh mục TODO cho Phase 9 (Gắn Supabase)
 
-- [x] GitHub repo: https://github.com/hieuhoang25/share-tray
 - [ ] Cung cấp Supabase Project URL, `SUPABASE_ANON_KEY` và `SUPABASE_SERVICE_ROLE_KEY`.
 - [ ] Chạy migration bảng Postgres và thiết lập Row Level Security (RLS) theo `src/types/domain.ts`.
 - [ ] Hoàn thiện cài đặt repository tại `src/server/repositories/supabase/`.

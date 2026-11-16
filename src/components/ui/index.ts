@@ -4,3 +4,4 @@ export * from './Button';
 export * from './Cards';
 export * from './FeedbackComponents';
 export * from './BottomNav';
+export * from './DevBar';
