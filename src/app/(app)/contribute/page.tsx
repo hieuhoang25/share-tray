@@ -1,196 +1,279 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ScreenHeader, DotRating, Button } from '@/components/ui';
+
+const HOW_KNOWN_OPTIONS = [
+  'Sống gần đây',
+  'Thời sinh viên',
+  'Làm việc gần đây',
+  'Người quen dẫn đi',
+];
+
+const AMENITIES_OPTIONS = [
+  'Cây ATM',
+  'Nhà thuốc',
+  'Nhà vệ sinh sạch',
+  'Điểm tham quan',
+  'Quán ăn tiếp theo',
+];
+
+interface Criterion {
+  id: 'gia' | 'pv' | 'kg';
+  label: string;
+  init: number;
+}
+
+const CRITERIA: Criterion[] = [
+  { id: 'gia', label: 'Giá cả', init: 5 },
+  { id: 'pv', label: 'Thái độ phục vụ', init: 4 },
+  { id: 'kg', label: 'Không gian quán', init: 3 },
+];
 
 export default function ContributeScreen() {
   const router = useRouter();
-  const [name, setName] = useState('');
-  const [howKnown, setHowKnown] = useState('Sống gần đây');
-  const [usualOrder, setUsualOrder] = useState('');
-  const [pricePaid, setPricePaid] = useState('50000');
-  const [whyDelicious, setWhyDelicious] = useState('');
-  const [scorePrice, setScorePrice] = useState(5);
-  const [scoreService, setScoreService] = useState(4);
-  const [scoreSpace, setScoreSpace] = useState(4);
+  const [shopName, setShopName] = useState('');
+  const [howKnown, setHowKnown] = useState('Thời sinh viên');
+  const [dish, setDish] = useState('');
+  const [price, setPrice] = useState('');
+  const [special, setSpecial] = useState('');
+  const [scores, setScores] = useState<Record<string, number>>({
+    gia: 5,
+    pv: 4,
+    kg: 3,
+  });
+  const [amenities, setAmenities] = useState<Record<string, boolean>>({
+    'Cây ATM': true,
+    'Nhà thuốc': true,
+  });
   const [memory, setMemory] = useState('');
-  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const toggleAmenity = (name: string) => {
+    setAmenities((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
+  };
+
+  const handleScore = (id: string, val: number) => {
+    setScores((prev) => ({
+      ...prev,
+      [id]: val,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
-    try {
-      const res = await fetch('/api/contributions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          how_known: howKnown,
-          usual_order: usualOrder,
-          price_paid: Number(pricePaid),
-          why_delicious: whyDelicious,
-          score_price: scorePrice,
-          score_service: scoreService,
-          score_space: scoreSpace,
-          memory,
-        }),
-      });
-
-      if (res.ok) {
-        alert('Cảm ơn bạn! Quán quen của bạn đã được gửi và đang chờ Admin duyệt.');
-        router.push('/');
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setSubmitting(false);
-    }
+    alert('Cảm ơn bạn! Quán quen của bạn đã được gửi thành công.');
+    router.push('/');
   };
 
   return (
-    <div className="bg-white min-h-screen text-ink pb-28">
-      <ScreenHeader
-        title="THÊM QUÁN QUEN"
-        variant="dark"
-        subtitle="Dành cho người Việt chia sẻ quán ruột"
-        backHref="/"
-        backLabel="Trang chủ"
-      />
+    <div className="w-full max-w-[390px] mx-auto min-h-screen bg-white text-ink flex flex-col font-sans pb-28">
+      {/* Dark Header */}
+      <div className="flex flex-col gap-1.5 px-5 pt-3 pb-5 bg-[#15171A] text-white">
+        <Link
+          href="/"
+          className="flex items-center gap-1.5 h-11 text-sm font-medium text-[#FFC72C] no-underline"
+        >
+          <svg
+            aria-hidden="true"
+            className="w-5 h-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M15 5l-7 7 7 7" />
+          </svg>
+          Quay lại
+        </Link>
+        <h1 className="m-0 font-anton text-4xl leading-[44px] tracking-[0.01em]">
+          THÊM QUÁN QUEN CỦA BẠN
+        </h1>
+        <span className="text-sm leading-5 text-[#D5D9DE]">
+          Quán không cần nổi tiếng. Chỉ cần bạn ăn ở đó nhiều lần và muốn một người bạn nước ngoài được ăn như bạn.
+        </span>
+      </div>
 
-      <form onSubmit={handleSubmit} className="p-5 space-y-6">
-        <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
-            Tên quán ăn *
+      <form onSubmit={handleSubmit} className="flex flex-col gap-[18px] p-5 flex-grow">
+        {/* Tên quán */}
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="ten" className="text-[13px] font-bold text-[#15171A]">
+            Tên quán
           </label>
           <input
+            id="ten"
             type="text"
-            required
-            placeholder="VD: Phở Bà Tâm, Bún chả Hàng Quạt"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-3.5 py-3 border border-border-2 rounded-[12px] text-sm focus:border-red focus:outline-none"
+            placeholder="Ví dụ: Phở Bà Tâm"
+            value={shopName}
+            onChange={(e) => setShopName(e.target.value)}
+            className="h-12 px-3.5 border border-[#C5C9CE] rounded-[12px] font-sans text-[15px] text-[#15171A] bg-white focus:outline-none focus:border-[#15171A]"
           />
         </div>
 
-        <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
-            Bạn biết quán này từ đâu?
-          </label>
-          <div className="grid grid-cols-2 gap-2">
-            {[
-              'Sống gần đây',
-              'Thời sinh viên',
-              'Làm việc gần đây',
-              'Người quen dẫn đi',
-            ].map((option) => (
-              <button
-                key={option}
-                type="button"
-                onClick={() => setHowKnown(option)}
-                className={`p-3 rounded-[12px] border text-xs font-semibold text-left transition-all ${
-                  howKnown === option
-                    ? 'bg-ink text-white border-ink'
-                    : 'bg-white text-muted border-border hover:border-ink'
-                }`}
-              >
-                {option}
-              </button>
-            ))}
+        {/* Bạn biết quán này từ đâu? */}
+        <div className="flex flex-col gap-2">
+          <span className="text-[13px] font-bold text-[#15171A]">Bạn biết quán này từ đâu?</span>
+          <div className="flex gap-2 flex-wrap">
+            {HOW_KNOWN_OPTIONS.map((opt) => {
+              const active = howKnown === opt;
+              return (
+                <button
+                  key={opt}
+                  type="button"
+                  onClick={() => setHowKnown(opt)}
+                  aria-pressed={active}
+                  className={`h-11 px-3.5 rounded-[22px] font-sans text-[13px] transition-colors cursor-pointer ${
+                    active
+                      ? 'border-2 border-[#15171A] bg-[#15171A] font-bold text-white'
+                      : 'border border-[#C5C9CE] bg-white font-normal text-[#15171A] hover:border-[#15171A]'
+                  }`}
+                >
+                  {opt}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Hộp cream Món quen */}
-        <div className="bg-cream border border-cream-border rounded-[14px] p-4 space-y-3">
-          <span className="text-xs font-anton text-cream-text tracking-wider block">
-            MÓN QUEN BẠN HAY GỌI
+        {/* Món quen của bạn (Cream box) */}
+        <div className="flex flex-col gap-2.5 p-3.5 rounded-[12px] bg-[#FFF3D1]">
+          <span className="text-sm font-bold text-[#15171A]">Món quen của bạn</span>
+          <span className="text-[13px] leading-[19px] text-[#15171A]">
+            Khách sẽ vào quán và nói “Cho cháu như [tên bạn] hay ăn”. Hãy ghi đúng món bạn vẫn gọi và giá bạn vẫn trả.
           </span>
-          <div>
-            <label className="block text-xs text-cream-text font-bold mb-1">
-              Bạn hay gọi gì khi đến quán?
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="mon" className="text-[13px] font-semibold text-[#15171A]">
+              Bạn hay gọi gì?
             </label>
             <input
+              id="mon"
               type="text"
-              required
-              placeholder="VD: Phở tái nạm gầu, 2 quẩy giòn và 1 trứng trần"
-              value={usualOrder}
-              onChange={(e) => setUsualOrder(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-cream-border rounded-lg text-sm text-ink focus:outline-none"
+              placeholder="Phở tái nạm, nhiều hành, một quẩy"
+              value={dish}
+              onChange={(e) => setDish(e.target.value)}
+              className="h-12 px-3.5 border border-[#C9A94A] rounded-[12px] font-sans text-[15px] text-[#15171A] bg-white focus:outline-none"
             />
           </div>
-          <div>
-            <label className="block text-xs text-cream-text font-bold mb-1">
-              Bạn thường trả bao nhiêu tiền (VNĐ)?
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="gia" className="text-[13px] font-semibold text-[#15171A]">
+              Bạn trả bao nhiêu? (₫)
             </label>
             <input
-              type="number"
-              required
-              value={pricePaid}
-              onChange={(e) => setPricePaid(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-cream-border rounded-lg text-sm text-ink focus:outline-none"
+              id="gia"
+              type="text"
+              inputMode="numeric"
+              placeholder="55.000"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="h-12 px-3.5 border border-[#C9A94A] rounded-[12px] font-sans text-[15px] text-[#15171A] bg-white focus:outline-none"
             />
           </div>
         </div>
 
-        <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
-            Vì sao quán này ngon? *
+        {/* Vì sao quán này ngon? */}
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="vs" className="text-[13px] font-bold text-[#15171A]">
+            Vì sao quán này ngon? (điểm đặc biệt)
           </label>
           <textarea
-            required
-            rows={3}
-            placeholder="Nước dùng ngọt thanh xương hầm 18 tiếng, bánh phở mềm dẻo..."
-            value={whyDelicious}
-            onChange={(e) => setWhyDelicious(e.target.value)}
-            className="w-full px-3.5 py-2.5 border border-border-2 rounded-[12px] text-sm focus:border-red focus:outline-none"
+            id="vs"
+            placeholder="Nước dùng ninh xương qua đêm, trong mà không ngọt…"
+            value={special}
+            onChange={(e) => setSpecial(e.target.value)}
+            className="h-20 p-3 sm:px-3.5 border border-[#C5C9CE] rounded-[12px] font-sans text-sm leading-5 text-[#15171A] bg-white resize-none focus:outline-none focus:border-[#15171A]"
           />
         </div>
 
-        {/* Chấm điểm DotRating 1-5 */}
-        <div className="space-y-3 p-4 bg-gray-bg rounded-[14px] border border-border">
-          <span className="text-xs font-anton text-ink tracking-wider block">
-            ĐÁNH GIÁ THỰC TẾ CỦA BẠN (1–5)
+        {/* Chấm điểm */}
+        <div className="flex flex-col gap-1">
+          <span className="text-[13px] font-bold text-[#15171A]">Chấm điểm (chạm để chọn)</span>
+          {CRITERIA.map((c) => {
+            const currentScore = scores[c.id] ?? c.init;
+            return (
+              <div key={c.id} className="flex items-center justify-between py-0.5">
+                <span className="text-sm text-[#15171A]">{c.label}</span>
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((star) => {
+                    const isOn = star <= currentScore;
+                    return (
+                      <button
+                        key={star}
+                        type="button"
+                        aria-label={`${c.label}: ${star} trên 5`}
+                        onClick={() => handleScore(c.id, star)}
+                        className="w-11 h-11 p-0 border-none bg-transparent flex items-center justify-center cursor-pointer"
+                      >
+                        {isOn ? (
+                          <span className="w-6 h-6 rounded-full bg-[#FFC72C] border-2 border-[#15171A] box-border inline-block" />
+                        ) : (
+                          <span className="w-6 h-6 rounded-full bg-white border-2 border-[#8A9099] box-border inline-block" />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Quanh quán có gì tiện cho khách? */}
+        <div className="flex flex-col gap-2">
+          <span className="text-[13px] font-bold text-[#15171A]">
+            Quanh quán có gì tiện cho khách?
           </span>
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-muted">Giá cả hợp lý:</span>
-            <DotRating value={scorePrice} onChange={setScorePrice} />
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-muted">Thái độ phục vụ:</span>
-            <DotRating value={scoreService} onChange={setScoreService} />
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-muted">Không gian quán:</span>
-            <DotRating value={scoreSpace} onChange={setScoreSpace} />
+          <div className="flex gap-2 flex-wrap">
+            {AMENITIES_OPTIONS.map((am) => {
+              const active = !!amenities[am];
+              return (
+                <button
+                  key={am}
+                  type="button"
+                  onClick={() => toggleAmenity(am)}
+                  aria-pressed={active}
+                  className={`h-11 px-3.5 rounded-[22px] font-sans text-[13px] transition-colors cursor-pointer ${
+                    active
+                      ? 'border-2 border-[#15171A] bg-[#15171A] font-bold text-white'
+                      : 'border border-[#C5C9CE] bg-white font-normal text-[#15171A] hover:border-[#15171A]'
+                  }`}
+                >
+                  {am}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
-            Kỷ niệm của bạn với quán (tuỳ chọn)
+        {/* Kỷ niệm của bạn với quán */}
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="bl" className="text-[13px] font-bold text-[#15171A]">
+            Kỷ niệm của bạn với quán
           </label>
           <textarea
-            rows={2}
-            placeholder="Những ngày mưa thời sinh viên ngồi ăn phở ngắm ngõ nhỏ..."
+            id="bl"
+            placeholder="Bốn năm đại học sáng nào mình cũng ăn ở đây…"
             value={memory}
             onChange={(e) => setMemory(e.target.value)}
-            className="w-full px-3.5 py-2.5 border border-border-2 rounded-[12px] text-sm focus:border-red focus:outline-none"
+            className="h-20 p-3 sm:px-3.5 border border-[#C5C9CE] rounded-[12px] font-sans text-sm leading-5 text-[#15171A] bg-white resize-none focus:outline-none focus:border-[#15171A]"
           />
         </div>
 
-        <p className="text-[11px] text-muted italic">
-          * Đóng góp của bạn sẽ được tự động dịch sang tiếng Anh cho du khách quốc tế và gửi đến Admin phê duyệt trước khi xuất hiện trên bản đồ ẩm thực.
+        <p className="m-0 text-xs leading-[18px] text-[#4A5059]">
+          Bạn cứ viết tiếng Việt, ứng dụng tự dịch và giữ bản gốc. Mỗi lần có khách ăn món quen của bạn, bạn sẽ nhận được lời cảm ơn.
         </p>
 
-        <Button
+        {/* Submit */}
+        <button
           type="submit"
-          variant="primary-red"
-          size="lg"
-          fullWidth
-          disabled={submitting}
+          className="mt-auto h-[52px] border-none rounded-[12px] bg-[#C8281E] font-sans text-base font-bold text-white cursor-pointer hover:bg-[#A31F17] transition-colors"
         >
-          {submitting ? 'Đang gửi...' : 'Gửi quán quen'}
-        </Button>
+          Gửi quán quen
+        </button>
       </form>
     </div>
   );

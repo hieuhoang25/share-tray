@@ -1,198 +1,170 @@
 'use client';
 
-import React, { useState, useEffect, use } from 'react';
-import { ScreenHeader, DarkCard, Button } from '@/components/ui';
-import type { ConversationCard, TableRitual, TableWord, Table } from '@/types/domain';
+import React, { useState, use } from 'react';
+import Link from 'next/link';
+
+const CARDS = [
+  { en: 'What did you eat for breakfast as a child?', vi: 'Hồi nhỏ bạn hay ăn sáng món gì?' },
+  { en: 'Which dish from home do you miss most right now?', vi: 'Lúc này bạn nhớ món quê nhà nào nhất?' },
+  { en: 'What do visitors always get wrong about your country?', vi: 'Khách hay hiểu sai điều gì về đất nước bạn?' },
+  { en: 'What work do you do, and which part of it do you love?', vi: 'Bạn làm nghề gì, và thích nhất điều gì ở công việc?' },
+  { en: 'Teach the table one word that nobody here knows.', vi: 'Dạy cả bàn một từ mà chưa ai biết.' },
+  { en: 'Where should the person on your left go next?', vi: 'Người ngồi bên trái bạn nên đi đâu tiếp theo?' },
+];
+
+const WORDS = [
+  { word: 'Ngon quá!', meaning: 'So delicious!', from: 'Thảo · Vietnamese' },
+  { word: 'Oishii', meaning: 'Delicious', from: 'Kenji · Japanese' },
+  { word: 'Lecker', meaning: 'Tasty', from: 'Anna · German' },
+  { word: 'Your word', meaning: 'Tap to add yours', from: 'You' },
+];
 
 export default function TableLiveScreen({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const [data, setData] = useState<{
-    cards: ConversationCard[];
-    rituals: TableRitual[];
-    words: TableWord[];
-    table: Table | null;
-  } | null>(null);
-
   const [cardIndex, setCardIndex] = useState(0);
-  const [newWord, setNewWord] = useState('');
-  const [newMeaning, setNewMeaning] = useState('');
 
-  useEffect(() => {
-    async function loadLiveData() {
-      try {
-        const res = await fetch(`/api/tables/${id}/live`);
-        if (res.ok) {
-          const json = await res.json();
-          setData(json);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    loadLiveData();
-  }, [id]);
+  const card = CARDS[cardIndex];
+  const totalCards = CARDS.length;
 
-  const handleAddWord = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newWord || !newMeaning) return;
-    try {
-      const res = await fetch(`/api/tables/${id}/words`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ word: newWord, meaning: newMeaning }),
-      });
-      if (res.ok) {
-        const created = await res.json();
-        setData((prev) => (prev ? { ...prev, words: [...prev.words, created] } : null));
-        setNewWord('');
-        setNewMeaning('');
-      }
-    } catch (err) {
-      console.error(err);
-    }
+  const handlePrev = () => {
+    setCardIndex((prev) => (prev + totalCards - 1) % totalCards);
   };
 
-  if (!data) {
-    return (
-      <div className="bg-ink min-h-screen text-white p-5">
-        <p className="text-sm text-on-dark-2">Connecting to live table...</p>
-      </div>
-    );
-  }
-
-  const { cards, rituals, words } = data;
-  const currentCard = cards[cardIndex] || cards[0];
+  const handleNext = () => {
+    setCardIndex((prev) => (prev + 1) % totalCards);
+  };
 
   return (
-    <div className="bg-ink min-h-screen text-white pb-28">
-      <ScreenHeader
-        title="NO AWKWARD SILENCE."
-        variant="dark"
-        subtitle="Live Dining Room Companion"
-        backHref={`/tables/${id}`}
-        backLabel="Table"
-      />
+    <div className="w-full max-w-[390px] mx-auto min-h-screen bg-[#15171A] text-white flex flex-col font-sans p-5 gap-4 pb-28">
+      {/* Back link */}
+      <Link
+        href={`/tables/${id}`}
+        className="flex items-center gap-1.5 h-11 text-sm font-medium text-[#FFC72C] no-underline"
+      >
+        <svg
+          aria-hidden="true"
+          className="w-5 h-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M15 5l-7 7 7 7" />
+        </svg>
+        The table
+      </Link>
 
-      <div className="p-5 space-y-6">
-        {/* CONVERSATION CARDS */}
-        {cards.length > 0 && (
-          <div className="bg-yellow text-ink p-5 rounded-[16px] shadow-lg space-y-4">
-            <div className="flex items-center justify-between text-xs font-anton tracking-wider">
-              <span>CARD {cardIndex + 1} OF {cards.length}</span>
-              <span className="text-[10px] uppercase font-bold">Bilingual Prompt</span>
-            </div>
-
-            <p className="font-anton text-2xl leading-tight">
-              &ldquo;{currentCard.text_en}&rdquo;
-            </p>
-            <p className="text-xs text-ink/80 italic font-medium">
-              &ldquo;{currentCard.text_vi}&rdquo;
-            </p>
-
-            <div className="flex gap-2 pt-2 border-t border-ink/20">
-              <button
-                type="button"
-                disabled={cardIndex === 0}
-                onClick={() => setCardIndex(cardIndex - 1)}
-                className="flex-1 py-2 bg-ink text-white font-bold text-xs rounded-lg disabled:opacity-40"
-              >
-                ← Previous
-              </button>
-              <button
-                type="button"
-                disabled={cardIndex === cards.length - 1}
-                onClick={() => setCardIndex(cardIndex + 1)}
-                className="flex-1 py-2 bg-ink text-white font-bold text-xs rounded-lg disabled:opacity-40"
-              >
-                Next Prompt →
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* TABLE RITUALS */}
-        <div className="space-y-3">
-          <span className="text-xs font-bold text-yellow uppercase tracking-wider block">
-            TABLE RITUALS FOR PHỞ
-          </span>
-          <DarkCard className="space-y-2.5 text-xs text-on-dark-1">
-            {rituals.map((r, idx) => (
-              <div key={r.id || idx} className="flex items-start gap-2.5">
-                <span className="font-anton text-yellow text-sm w-4 shrink-0">{idx + 1}.</span>
-                <p>{r.text_en}</p>
-              </div>
-            ))}
-          </DarkCard>
-        </div>
-
-        {/* WORD TRADE */}
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-yellow uppercase tracking-wider">
-              WORD TRADE
-            </span>
-            <span className="text-[10px] text-on-dark-2">Realtime shared vocabulary</span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <div className="p-3 bg-ink-2 border border-line-dark rounded-[10px]">
-              <span className="font-bold text-yellow block">Ngon quá!</span>
-              <span className="text-on-dark-2 block mt-0.5">Delicious! · by Thảo</span>
-            </div>
-            <div className="p-3 bg-ink-2 border border-line-dark rounded-[10px]">
-              <span className="font-bold text-yellow block">Oishii</span>
-              <span className="text-on-dark-2 block mt-0.5">Tasty · by Kenji</span>
-            </div>
-            {words.map((w) => (
-              <div key={w.id} className="p-3 bg-ink-2 border border-line-dark rounded-[10px]">
-                <span className="font-bold text-yellow block">{w.word}</span>
-                <span className="text-on-dark-2 block mt-0.5">{w.meaning}</span>
-              </div>
-            ))}
-          </div>
-
-          <form onSubmit={handleAddWord} className="flex gap-2">
-            <input
-              type="text"
-              placeholder="Your word"
-              value={newWord}
-              onChange={(e) => setNewWord(e.target.value)}
-              className="flex-1 bg-ink-2 border border-line-dark px-3 py-2 rounded-lg text-xs text-white focus:outline-none"
-            />
-            <input
-              type="text"
-              placeholder="Meaning"
-              value={newMeaning}
-              onChange={(e) => setNewMeaning(e.target.value)}
-              className="flex-1 bg-ink-2 border border-line-dark px-3 py-2 rounded-lg text-xs text-white focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="bg-yellow text-ink font-bold text-xs px-3 py-2 rounded-lg shrink-0"
-            >
-              Add
-            </button>
-          </form>
-        </div>
-
-        {/* THE BILL WITHOUT AWKWARD PART */}
-        <DarkCard className="space-y-2 text-xs text-center border-yellow/30">
-          <span className="font-anton text-sm text-yellow block">
-            THE BILL, WITHOUT THE AWKWARD PART
-          </span>
-          <p className="text-on-dark-1">
-            Total 240,000₫ / 4 people = <strong>60,000₫</strong> ($2.30) each
-          </p>
-          <p className="text-[10px] text-on-dark-2 italic">
-            Hand cash directly to the vendor or transfer via QR
-          </p>
-        </DarkCard>
-
-        {/* Finish CTA */}
-        <Button variant="primary-red" size="lg" fullWidth href={`/tables/${id}/after`}>
-          We are done eating →
-        </Button>
+      {/* Header title */}
+      <div className="flex flex-col gap-1.5">
+        <h1 className="m-0 font-anton text-[40px] leading-[46px] tracking-[0.01em]">
+          NO AWKWARD SILENCE.
+        </h1>
+        <span className="text-sm leading-5 text-[#D5D9DE]">
+          Put one phone in the middle of the table. Whoever draws the card answers first.
+        </span>
       </div>
+
+      {/* Conversation Card */}
+      <div className="flex flex-col gap-2.5 p-[18px] rounded-[16px] bg-[#FFC72C] text-[#15171A]">
+        <span className="text-[11px] font-bold tracking-[0.06em]">
+          CARD {cardIndex + 1} OF {totalCards}
+        </span>
+        <span className="text-[22px] leading-[30px] font-bold">{card.en}</span>
+        <span className="text-[15px] leading-[22px]">{card.vi}</span>
+      </div>
+
+      {/* Prev / Next Buttons */}
+      <div className="grid grid-cols-2 gap-2">
+        <button
+          onClick={handlePrev}
+          className="h-12 border border-[#6A717B] rounded-[12px] bg-transparent text-sm font-semibold text-white cursor-pointer hover:border-white transition-colors"
+        >
+          Previous card
+        </button>
+        <button
+          onClick={handleNext}
+          className="h-12 border-none rounded-[12px] bg-white text-sm font-bold text-[#15171A] cursor-pointer hover:bg-[#F1F2F4] transition-colors"
+        >
+          Next card
+        </button>
+      </div>
+
+      {/* Table Rituals for Bún Chả */}
+      <div className="flex flex-col gap-2.5 p-3.5 rounded-[12px] bg-[#22262B]">
+        <span className="text-xs font-semibold tracking-[0.06em] text-[#B8BDC4]">
+          TABLE RITUALS FOR BÚN CHẢ
+        </span>
+        <div className="flex gap-2.5 items-start">
+          <span
+            aria-hidden="true"
+            className="w-2 h-2 mt-[7px] shrink-0 bg-[#FFC72C] inline-block"
+          />
+          <span className="text-sm leading-[21px] text-white">
+            The youngest pours tea for the oldest first. Today that means Minh Anh serves Bác Hòa.
+          </span>
+        </div>
+        <div className="flex gap-2.5 items-start">
+          <span
+            aria-hidden="true"
+            className="w-2 h-2 mt-[7px] shrink-0 bg-[#FFC72C] inline-block"
+          />
+          <span className="text-sm leading-[21px] text-white">
+            Dip, do not pour: a few noodles go into the warm broth bowl at a time.
+          </span>
+        </div>
+        <div className="flex gap-2.5 items-start">
+          <span
+            aria-hidden="true"
+            className="w-2 h-2 mt-[7px] shrink-0 bg-[#FFC72C] inline-block"
+          />
+          <span className="text-sm leading-[21px] text-white">
+            The toast, all together: “Một, hai, ba, dô!” (moht, hi, bah, zo). One, two, three, cheers.
+          </span>
+        </div>
+      </div>
+
+      {/* Word Trade */}
+      <div className="flex flex-col gap-2.5">
+        <span className="text-[13px] font-semibold text-white">
+          Word trade: everyone teaches one word
+        </span>
+        <div className="grid grid-cols-2 gap-2">
+          {WORDS.map((w) => (
+            <div
+              key={w.word}
+              className="flex flex-col gap-0.5 p-2.5 sm:p-3 border border-[#4A5059] rounded-[12px]"
+            >
+              <span className="text-base font-bold text-[#FFC72C]">{w.word}</span>
+              <span className="text-xs text-[#D5D9DE]">{w.meaning}</span>
+              <span className="text-xs text-[#B8BDC4]">{w.from}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* The Bill */}
+      <div className="flex flex-col gap-1.5 p-3.5 rounded-[12px] bg-[#22262B]">
+        <span className="text-xs font-semibold tracking-[0.06em] text-[#B8BDC4]">
+          THE BILL, WITHOUT THE AWKWARD PART
+        </span>
+        <div className="flex justify-between items-baseline">
+          <span className="text-sm text-white">Table total 300,000₫ · 6 people</span>
+          <span className="text-xl font-bold text-[#FFC72C]">50,000₫ each</span>
+        </div>
+        <span className="text-[13px] leading-[19px] text-[#D5D9DE]">
+          Pay your share in the app with your own card. Thảo pays the shop in cash.
+        </span>
+      </div>
+
+      {/* Bottom CTA */}
+      <Link
+        href={`/tables/${id}/after`}
+        className="mt-auto flex items-center justify-center h-[52px] rounded-[12px] bg-[#C8281E] text-base font-bold text-white no-underline hover:bg-[#A31F17] transition-colors"
+      >
+        We are done eating
+      </Link>
     </div>
   );
 }

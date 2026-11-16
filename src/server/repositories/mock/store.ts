@@ -168,7 +168,8 @@ export function createMockRepositories(): Repositories {
       },
       async getBySlug(slug) {
         await simulateLatency();
-        return store.dishes.find((d) => d.slug === slug) || null;
+        const norm = slug.replace(/-/g, '');
+        return store.dishes.find((d) => d.slug === slug || d.slug.replace(/-/g, '') === norm) || null;
       },
       async getById(id) {
         await simulateLatency();
