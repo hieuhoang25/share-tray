@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@import "@fontsource/anton/vietnamese.css";
+@import "@fontsource/anton/latin.css";
+@import "@fontsource/be-vietnam-pro/400.css";
+@import "@fontsource/be-vietnam-pro/500.css";
+@import "@fontsource/be-vietnam-pro/600.css";
+@import "@fontsource/be-vietnam-pro/700.css";
+
+@theme {
+  --color-ink: #15171A;
+  --color-ink-2: #22262B;
+  --color-red: #C8281E;
+  --color-red-text: #A31F17;
+  --color-yellow: #FFC72C;
+  --color-cream: #FFF3D1;
+  --color-cream-text: #5C4200;
+  --color-cream-border: #C9A94A;
+  --color-pink-soft: #FFE3DF;
+  --color-divider-red: #E0756D;
+  --color-gray-bg: #F1F2F4;
+  --color-border: #E2E4E7;
+  --color-border-2: #C5C9CE;
+  --color-track: #D9DCE0;
+  --color-muted: #4A5059;
+  --color-muted-2: #6A717B;
+  --color-muted-3: #8A9099;
+  --color-on-dark-1: #D5D9DE;
+  --color-on-dark-2: #B8BDC4;
+  --color-line-dark: #33383F;
+  --color-green: #1F7A4D;
+  --color-green-dark: #7FD6A4;
+
+  --font-anton: "Anton", sans-serif;
+  --font-be-vietnam: "Be Vietnam Pro", sans-serif;
+}
+
+:root {
+  --font-anton: "Anton", sans-serif;
+  --font-be-vietnam: "Be Vietnam Pro", sans-serif;
+}
+
+body {
+  font-family: var(--font-be-vietnam);
+  color: #15171A;
+  background-color: #15171A;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom utility for Anton headers */
+.font-anton {
+  font-family: var(--font-anton);
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  font-weight: 400;
+}

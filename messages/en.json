@@ -1,0 +1,37 @@
+{
+  "common": {
+    "appName": "Share Tray",
+    "back": "Back",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "save": "Save",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "share": "Share",
+    "call": "Call a local",
+    "report": "Report",
+    "gentle": "Gentle",
+    "curious": "Curious",
+    "fearless": "Fearless"
+  },
+  "nav": {
+    "now": "Now",
+    "dishes": "Dishes",
+    "days": "Days",
+    "together": "Together",
+    "help": "Help"
+  },
+  "home": {
+    "headline": "HUNGRY? GO HERE.",
+    "howBrave": "How brave are you feeling?",
+    "showPlace": "Show me this place",
+    "whyThisOne": "WHY THIS ONE, WHY NOW",
+    "passportTitle": "YOUR FOOD PASSPORT",
+    "passportProgress": "{count} of {total} dishes",
+    "borrowDay": "BORROW A LOCAL'S DAY",
+    "borrowDayDesc": "Follow a resident's perfect food timeline across Hanoi.",
+    "dontEatAlone": "DON'T EAT ALONE",
+    "dontEatAloneDesc": "Share a table with locals & travellers right now.",
+    "localContributeLink": "Bạn là người Việt? Thêm quán quen của bạn"
+  }
+}

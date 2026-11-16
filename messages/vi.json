@@ -1,0 +1,37 @@
+{
+  "common": {
+    "appName": "Share Tray",
+    "back": "Quay lại",
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "save": "Lưu",
+    "confirm": "Xác nhận",
+    "cancel": "Huỷ",
+    "share": "Chia sẻ",
+    "call": "Gọi một người Việt",
+    "report": "Báo cáo",
+    "gentle": "Dễ ăn",
+    "curious": "Khám phá",
+    "fearless": "Đậm chất địa phương"
+  },
+  "nav": {
+    "now": "Hiện tại",
+    "dishes": "Món ăn",
+    "days": "Theo ngày",
+    "together": "Ăn chung",
+    "help": "Trợ giúp"
+  },
+  "home": {
+    "headline": "ĐANG ĐÓI? ĐẾN ĐÂY NGAY.",
+    "howBrave": "Hôm nay bạn muốn thử sức ở mức nào?",
+    "showPlace": "Xem quán này",
+    "whyThisOne": "VÌ SAO NÊN ĐẾN QUÁN NÀY LÚC NÀY",
+    "passportTitle": "HỘ CHIẾU ẨM THỰC CỦA BẠN",
+    "passportProgress": "{count} trên {total} món",
+    "borrowDay": "MƯỢN MỘT NGÀY CỦA NGƯỜI HÀ NỘI",
+    "borrowDayDesc": "Trải nghiệm hành trình ẩm thực trọn vẹn theo lịch trình của người bản xứ.",
+    "dontEatAlone": "ĐỪNG ĂN MỘT MÌNH",
+    "dontEatAloneDesc": "Ghép bàn cùng người Việt và bạn bè quốc tế ngay hôm nay.",
+    "localContributeLink": "Bạn là người Việt? Thêm quán quen của bạn"
+  }
+}
