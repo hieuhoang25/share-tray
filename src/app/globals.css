@@ -1,52 +1,69 @@
 @import "tailwindcss";
-@import "@fontsource/anton/vietnamese.css";
-@import "@fontsource/anton/latin.css";
 @import "@fontsource/be-vietnam-pro/400.css";
 @import "@fontsource/be-vietnam-pro/500.css";
 @import "@fontsource/be-vietnam-pro/600.css";
 @import "@fontsource/be-vietnam-pro/700.css";
+@import "@fontsource/be-vietnam-pro/800.css";
+@import "@fontsource/anton/vietnamese.css";
+@import "@fontsource/anton/latin.css";
 
 @theme {
-  --color-ink: #15171A;
-  --color-ink-2: #22262B;
-  --color-red: #C8281E;
-  --color-red-text: #A31F17;
-  --color-yellow: #FFC72C;
-  --color-cream: #FFF3D1;
-  --color-cream-text: #5C4200;
-  --color-cream-border: #C9A94A;
-  --color-pink-soft: #FFE3DF;
-  --color-divider-red: #E0756D;
-  --color-gray-bg: #F1F2F4;
-  --color-border: #E2E4E7;
-  --color-border-2: #C5C9CE;
-  --color-track: #D9DCE0;
-  --color-muted: #4A5059;
-  --color-muted-2: #6A717B;
-  --color-muted-3: #8A9099;
-  --color-on-dark-1: #D5D9DE;
-  --color-on-dark-2: #B8BDC4;
-  --color-line-dark: #33383F;
+  /* Brand colors */
+  --color-jade: #0B5D4B;
+  --color-jade-dark: #083F34;
+  --color-coral: #FF7A59;
+  --color-coral-soft: #FFE9E1;
+  --color-coral-text: #8A2A12;
+  --color-mint: #E2F0EA;
+  --color-mint-light: #BFD8CF;
+  --color-mint-border: #CDE5DC;
+
+  /* Surfaces & base */
+  --color-surface: #F3F5F2;
+  --color-surface-card: #FFFFFF;
+  --color-ink: #12211D;
+  --color-ink-2: #1E332D;
+  --color-muted: #4A5852;
+  --color-border: #DCE2DE;
+  --color-border-2: #B9C4BE;
+  --color-border-dashed: #7B8A84;
+  --color-track: #DCE2DE;
   --color-green: #1F7A4D;
   --color-green-dark: #7FD6A4;
 
-  --font-anton: "Anton", sans-serif;
+  /* Backward compatibility aliases */
+  --color-red: #0B5D4B;
+  --color-red-text: #0B5D4B;
+  --color-yellow: #FF7A59;
+  --color-cream: #E2F0EA;
+  --color-cream-text: #0B5D4B;
+  --color-cream-border: #CDE5DC;
+  --color-pink-soft: #BFD8CF;
+  --color-divider-red: rgba(255, 255, 255, 0.18);
+  --color-gray-bg: #F3F5F2;
+  --color-muted-2: #B9C4BE;
+  --color-muted-3: #7B8A84;
+  --color-on-dark-1: #BFD8CF;
+  --color-on-dark-2: #CDE5DC;
+  --color-line-dark: rgba(255, 255, 255, 0.18);
+
   --font-be-vietnam: "Be Vietnam Pro", sans-serif;
+  --font-anton: "Anton", sans-serif;
 }
 
 :root {
-  --font-anton: "Anton", sans-serif;
   --font-be-vietnam: "Be Vietnam Pro", sans-serif;
+  --font-anton: "Anton", sans-serif;
 }
 
 body {
   font-family: var(--font-be-vietnam);
-  color: #FFFFFF;
-  background-color: #15171A;
+  color: #12211D;
+  background-color: #F3F5F2;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Custom utility for Anton headers */
+/* Custom utility for legacy / fallback headers */
 .font-anton {
   font-family: var(--font-anton);
   text-transform: uppercase;

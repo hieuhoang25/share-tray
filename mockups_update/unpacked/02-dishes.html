@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Dishes</title>
+<script src="efae559c-d03b-4c1c-9752-db90527420b4"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>/* vietnamese */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("11c64524-0422-4715-afbe-77913f190d4a") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("0acfe78b-052e-4b47-a699-9e8991a67b63") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("0f65c607-cbcc-4f9d-bf0e-4aee1a41f782") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("93a3ebb2-29e9-4a0c-a213-2ede1c05288e") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("e4b619b0-c6ca-4c75-a23a-50180ee44da3") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("18b7e5f0-c698-445b-81d2-786e3d17f867") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("7dffcbf4-c53a-4c8e-befc-4c3cc2dafbf2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("bc4a51e8-f4f9-4257-af69-ae568f2f3e8e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("e23f508d-dd83-4d58-8820-fea1b4da6af9") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("266861b6-2690-4297-8d22-463dfa31dfcd") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("8123720b-6c81-40ac-a122-057cceb0f4a9") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("a01be06c-ad89-4cc6-aa4d-386fb71922a2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("3e19f456-c03a-451d-b544-7852f4f27534") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("9253ebe1-7b54-4f9c-81a9-f18b9f99f6e9") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("befc0e38-04ac-4219-bd31-71d4f02d08f9") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0}
+a{color:#0B5D4B}a:hover{color:#083F34}
+</style>
+</helmet>
+<div style="width: 390px; box-sizing: border-box; display: flex; flex-direction: column; background: #F3F5F2; color: #12211D; font-family: 'Be Vietnam Pro', system-ui, sans-serif; height: 1080px">
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 24px 20px 0 20px">
+<h1 style="margin: 0; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -0.02em">What are you craving?</h1>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<sc-for list="{{dishes}}" as="d" hint-placeholder-count="4">
+<sc-if value="{{d.on}}" hint-placeholder-val="{{false}}"><button sc-camel-on-click="{{d.pick}}" aria-pressed="true" style="height: 44px; padding: 0 16px; border: 1.5px solid #0B5D4B; border-radius: 22px; background: #0B5D4B; font: inherit; font-size: 14px; font-weight: 600; color: #FFFFFF">{{d.vi}}</button></sc-if>
+<sc-if value="{{d.off}}" hint-placeholder-val="{{true}}"><button sc-camel-on-click="{{d.pick}}" aria-pressed="false" style="height: 44px; padding: 0 16px; border: 1.5px solid #DCE2DE; border-radius: 22px; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; color: #12211D">{{d.vi}}</button></sc-if>
+</sc-for>
+</div>
+<span style="margin: 0; font-size: 15px; line-height: 22px; color: #4A5852">{{gloss}}</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 16px 20px 20px 20px">
+<p style="margin: 0; font-size: 13px; line-height: 19px; color: #4A5852">Ranked only by Vietnamese people who eat there. Level shows how easy a place is on a first visit.</p>
+<sc-for list="{{places}}" as="p" hint-placeholder-count="3">
+<a href="Place.dc.html" style="display: flex; flex-direction: column; gap: 8px; padding: 16px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(18,33,29,0.06), 0 8px 24px rgba(18,33,29,0.04); text-decoration: none; color: #12211D">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="font-size: 17px; line-height: 24px; font-weight: 700">{{p.name}}</span>
+<span style="padding: 4px 10px; border-radius: 999px; background: #0B5D4B; font-size: 13px; line-height: 16px; font-weight: 700; color: #FFFFFF">{{p.score}}</span>
+</div>
+<span style="font-size: 13px; line-height: 19px; color: #4A5852">{{p.area}}</span>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5852">Known for</span>
+<span style="font-size: 14px; line-height: 20px">{{p.known}}</span>
+</div>
+<span style="font-size: 13px; line-height: 19px; color: #4A5852">{{p.scores}}</span>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="font-size: 13px; font-weight: 600; color: #0B5D4B">{{p.locals}}</span>
+<span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: #E2F0EA; font-size: 12px; line-height: 16px; font-weight: 700; color: #0B5D4B">{{p.level}}</span>
+</div>
+</a>
+</sc-for>
+</div>
+<nav aria-label="Main" style="margin-top: auto; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 6px 8px 12px 8px; border-top: 1px solid #DCE2DE; background: #FFFFFF">
+<a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 56px; text-decoration: none; font-size: 11px; font-weight: 500; color: #4A5852"><svg aria-hidden="true" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"></path></svg>Home</a>
+<a href="Together.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 56px; text-decoration: none; font-size: 11px; font-weight: 500; color: #4A5852"><svg aria-hidden="true" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 14.2c2.9.3 5 2.7 5 5.8"></path></svg>Tables</a>
+<a href="Category.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 56px; text-decoration: none; font-size: 11px; font-weight: 700; color: #0B5D4B"><svg aria-hidden="true" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18a9 9 0 0 1-18 0z"></path><path d="M8 4c0 1.5 1 1.5 1 3M12 4c0 1.5 1 1.5 1 3M16 4c0 1.5 1 1.5 1 3"></path></svg>Dishes</a>
+<a href="Day.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 56px; text-decoration: none; font-size: 11px; font-weight: 500; color: #4A5852"><svg aria-hidden="true" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>Days</a>
+<a href="Call.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 56px; text-decoration: none; font-size: 11px; font-weight: 500; color: #4A5852"><svg aria-hidden="true" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg>Help</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:1080}}">
+class Component extends DCLogic {
+renderVals() {
+const s = this.state || {};
+const cur = s.dish ?? 'pho';
+const data = {
+pho: { vi: 'Phở', gloss: 'Rice-noodle soup with beef or chicken. A breakfast dish in Hà Nội.', places: [
+{ name: 'Phở Bà Tâm', score: '4.5', area: 'Đống Đa · 650 m · 45,000₫ (about $1.70)', known: 'Clear broth simmered overnight, never sweet', scores: 'Price 4.7 · Service 4.2 · Space 3.9', locals: '23 locals eat here', level: 'Curious' },
+{ name: 'Phở Chú Minh', score: '4.3', area: 'Hoàn Kiếm · 2.0 km · 55,000₫ (about $2.10)', known: 'Hand-cut noodles and a picture menu', scores: 'Price 4.1 · Service 4.5 · Space 4.2', locals: '31 locals eat here', level: 'Gentle' },
+{ name: 'Phở Gà Ngõ 12', score: '4.4', area: 'Ba Đình · 1.2 km · 40,000₫ (about $1.50)', known: 'Free-range chicken, lime-leaf scent', scores: 'Price 4.8 · Service 4.0 · Space 3.6', locals: '17 locals eat here', level: 'Fearless' }
+] },
+buncha: { vi: 'Bún chả', gloss: 'Charcoal-grilled pork in a warm dipping broth, with cold rice noodles. A lunch dish.', places: [
+{ name: 'Bún chả Ngõ 41', score: '4.6', area: 'Đống Đa · 900 m · 50,000₫ (about $1.90)', known: 'Pork grilled over charcoal at the door, to order', scores: 'Price 4.5 · Service 4.3 · Space 3.7', locals: '28 locals eat here', level: 'Curious' },
+{ name: 'Bún chả Cô Dung', score: '4.2', area: 'Hai Bà Trưng · 2.4 km · 45,000₫ (about $1.70)', known: 'Crab spring rolls on the side', scores: 'Price 4.6 · Service 3.9 · Space 4.0', locals: '12 locals eat here', level: 'Gentle' }
+] },
+oc: { vi: 'Ốc', gloss: 'Snails and shellfish, boiled or stir-fried, eaten slowly with friends in the evening.', places: [
+{ name: 'Ốc Cô Hạnh', score: '4.3', area: 'Hai Bà Trưng · 1.8 km · 60,000₫ (about $2.30)', known: 'Ginger fish sauce made fresh every afternoon', scores: 'Price 4.4 · Service 4.1 · Space 3.5', locals: '19 locals eat here', level: 'Fearless' },
+{ name: 'Ốc Luộc Bà Sáu', score: '4.1', area: 'Đống Đa · 1.1 km · 40,000₫ (about $1.50)', known: 'One thing only: boiled snails with lime leaf', scores: 'Price 4.8 · Service 3.8 · Space 3.3', locals: '8 locals eat here', level: 'Fearless' }
+] },
+caphe: { vi: 'Cà phê', gloss: 'Strong drip coffee with condensed milk, egg cream or coconut. Sit as long as you like.', places: [
+{ name: 'Cà phê Ông Lâm', score: '4.5', area: 'Đống Đa · 400 m · 30,000₫ (about $1.20)', known: 'Egg coffee whisked by hand, quiet second floor', scores: 'Price 4.3 · Service 4.4 · Space 4.6', locals: '26 locals drink here', level: 'Gentle' },
+{ name: 'Cà phê Vỉa Hè 9', score: '4.0', area: 'Ba Đình · 1.5 km · 20,000₫ (about $0.80)', known: 'Pavement stools and the morning newspaper crowd', scores: 'Price 4.9 · Service 3.7 · Space 3.4', locals: '11 locals drink here', level: 'Curious' }
+] }
+};
+const order = ['pho', 'buncha', 'oc', 'caphe'];
+return {
+dishes: order.map((id) => ({ vi: data[id].vi, on: id === cur, off: id !== cur, pick: () => this.setState({ dish: id }) })),
+gloss: data[cur].gloss,
+places: data[cur].places
+};
+}
+}
+</script>
+
+
+</body></html>

@@ -50,12 +50,12 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         root.render(<TogetherScreen />);
       });
 
-      expect(container.textContent).toContain('EAT TOGETHER. LEAVE WITH FRIENDS.');
-      expect(container.textContent).toContain('HAPPENING NOW · 350 M FROM YOU');
-      expect(container.textContent).toContain('A TABLE IN 25 MINUTES');
+      expect(container.textContent).toContain('Eat together. Leave with friends.');
+      expect(container.textContent).toContain('Happening now · 350 m from you');
+      expect(container.textContent).toContain('A table in 25 minutes');
       expect(container.textContent).toContain('See who is at the table');
       expect(container.textContent).toContain('What are you hoping for?');
-      expect(container.textContent).toContain('HALF & HALF BÚN CHẢ');
+      expect(container.textContent).toContain('Half & half bún chả');
       expect(container.textContent).toContain('Open a seat at your own table');
       expect(container.textContent).toContain('Prefer one person to a full table?');
     });
@@ -73,8 +73,8 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         workChip?.click();
       });
 
-      expect(container.textContent).toContain('ENGINEERS’ HOT POT');
-      expect(container.textContent).toContain('LUNCH WITH AN OFFICE TEAM');
+      expect(container.textContent).toContain('Engineers’ hot pot');
+      expect(container.textContent).toContain('Lunch with an office team');
     });
   });
 
@@ -85,12 +85,13 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         root.render(<TableDetailScreen params={idPromise} />);
       });
 
-      expect(container.textContent).toContain('HALF & HALF BÚN CHẢ');
+      expect(container.textContent).toContain('Half & half bún chả');
       expect(container.textContent).toContain('Why this table fits you');
-      expect(container.textContent).toContain('WHO IS AT THE TABLE');
+      expect(container.textContent).toContain('Who is at the table');
       expect(container.textContent).toContain('Thảo · host');
       expect(container.textContent).toContain('Kenji');
-      expect(container.textContent).toContain('HOW THE HOUR GOES');
+      expect(container.textContent).toContain('12:15 · 6 seats');
+      expect(container.textContent).toContain('How the hour goes');
       expect(container.textContent).toContain('What it costs');
       expect(container.textContent).toContain('Table rules');
 
@@ -116,8 +117,8 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         root.render(<TableLiveScreen params={idPromise} />);
       });
 
-      expect(container.textContent).toContain('NO AWKWARD SILENCE.');
-      expect(container.textContent).toContain('CARD 1 OF 6');
+      expect(container.textContent).toContain('No awkward silence.');
+      expect(container.textContent).toContain('Card 1 of 6');
       expect(container.textContent).toContain('What did you eat for breakfast as a child?');
 
       const buttons = Array.from(container.querySelectorAll('button'));
@@ -128,11 +129,14 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         nextBtn?.click();
       });
 
-      expect(container.textContent).toContain('CARD 2 OF 6');
-      expect(container.textContent).toContain('TABLE RITUALS FOR BÚN CHẢ');
+      expect(container.textContent).toContain('Card 2 of 6');
+      expect(container.textContent).toContain('Table rituals for bún chả');
       expect(container.textContent).toContain('Word trade: everyone teaches one word');
-      expect(container.textContent).toContain('THE BILL, WITHOUT THE AWKWARD PART');
+      expect(container.textContent).toContain('The bill, without the awkward part');
       expect(container.textContent).toContain('50,000₫ each');
+      expect(container.textContent).toContain(
+        'Everyone hands their share to Thảo in cash. She pays the shop.'
+      );
       expect(container.textContent).toContain('We are done eating');
     });
   });
@@ -144,7 +148,7 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         root.render(<TableAfterScreen params={idPromise} />);
       });
 
-      expect(container.textContent).toContain('YOU ATE WITH FIVE PEOPLE.');
+      expect(container.textContent).toContain('You ate with five people.');
       expect(container.textContent).toContain('Table photo · Bún chả Ngõ 41 · 16 Nov');
       expect(container.textContent).toContain('Both said yes · contacts shared');
 
@@ -158,7 +162,7 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
 
       expect(container.textContent).toContain('Waiting for their answer');
       expect(container.textContent).toContain('Leave Thảo, your host, one kind word');
-      expect(container.textContent).toContain('YOUR TABLE NETWORK');
+      expect(container.textContent).toContain('Your table network');
       expect(container.textContent).toContain('14');
       expect(container.textContent).toContain('people kept');
       expect(container.textContent).toContain('Find my next table');
@@ -171,11 +175,11 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         root.render(<NewTableScreen />);
       });
 
-      expect(container.textContent).toContain('OPEN A SEAT.');
+      expect(container.textContent).toContain('Open a seat.');
       expect(container.textContent).toContain('Where are you eating?');
       expect(container.textContent).toContain('When?');
       expect(container.textContent).toContain('How many open seats?');
-      expect(container.textContent).toContain('YOUR TABLE CARD · WHAT OTHERS SEE');
+      expect(container.textContent).toContain('Your table card · what others see');
       expect(container.textContent).toContain('Your table, as others will see it');
 
       const buttons = Array.from(container.querySelectorAll('button'));
@@ -197,7 +201,7 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         root.render(<CompanyScreen />);
       });
 
-      expect(container.textContent).toContain('ONE LOCAL, JUST FOR YOU.');
+      expect(container.textContent).toContain('One local, just for you.');
       expect(container.textContent).toContain('Eat with one local');
       expect(container.textContent).toContain('Hire a licensed guide');
       expect(container.textContent).toContain('Thảo, 26');
@@ -223,11 +227,11 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         root.render(<HelpScreen />);
       });
 
-      expect(container.textContent).toContain('STUCK? A LOCAL PICKS UP.');
+      expect(container.textContent).toContain('Stuck? A local picks up.');
       expect(container.textContent).toContain('What is going on?');
       expect(container.textContent).toContain('Minh Anh, 21');
       expect(container.textContent).toContain('Free right now');
-      expect(container.textContent).toContain('ON SPEAKER · LIVE CAPTIONS');
+      expect(container.textContent).toContain('On speaker · live captions');
       expect(container.textContent).toContain('Minh Anh to the vendor');
 
       const buttons = Array.from(container.querySelectorAll('button'));
@@ -239,7 +243,7 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
       });
 
       expect(container.textContent).toContain('Call Minh Anh · free');
-      expect(container.textContent).not.toContain('ON SPEAKER · LIVE CAPTIONS');
+      expect(container.textContent).not.toContain('On speaker · live captions');
     });
   });
 
@@ -249,22 +253,21 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         root.render(<DayScreen />);
       });
 
-      expect(container.textContent).toContain('BORROW A LOCAL’S DAY');
-      expect(container.textContent).toContain('LINH’S SATURDAY');
+      expect(container.textContent).toContain('Borrow a local’s day');
+      expect(container.textContent).toContain('Linh’s Saturday');
       expect(container.textContent).toContain('5');
       expect(container.textContent).toContain('stops');
-      expect(container.textContent).toContain('2.1 KM');
+      expect(container.textContent).toContain('2.1 km');
       expect(container.textContent).toContain('200,000₫');
 
-      expect(container.textContent).toContain('PHỞ BÒ');
-      expect(container.textContent).toContain('CÀ PHÊ TRỨNG');
-      expect(container.textContent).toContain('BÚN CHẢ');
-      expect(container.textContent).toContain('CHÈ');
-      expect(container.textContent).toContain('ỐC LUỘC');
+      expect(container.textContent).toContain('Phở bò');
+      expect(container.textContent).toContain('Cà phê trứng');
+      expect(container.textContent).toContain('Bún chả');
+      expect(container.textContent).toContain('Chè');
+      expect(container.textContent).toContain('Ốc luộc');
 
       expect(container.textContent).toContain('Start Linh’s day');
       expect(container.textContent).toContain('Other days you can borrow');
-      expect(container.textContent).toContain('Call a local');
     });
   });
 
@@ -274,7 +277,7 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
         root.render(<ContributeScreen />);
       });
 
-      expect(container.textContent).toContain('THÊM QUÁN QUEN CỦA BẠN');
+      expect(container.textContent).toContain('Thêm quán quen của bạn');
       expect(container.textContent).toContain('Tên quán');
       expect(container.textContent).toContain('Bạn biết quán này từ đâu?');
       expect(container.textContent).toContain('Món quen của bạn');
@@ -287,6 +290,7 @@ describe('Group B Screens (06-together -> 14-contribute)', () => {
       expect(container.textContent).toContain('Quanh quán có gì tiện cho khách?');
       expect(container.textContent).toContain('Kỷ niệm của bạn với quán');
       expect(container.textContent).toContain('Gửi quán quen');
+      expect(container.textContent).toContain('mâm · ăn cùng nhau ở Việt Nam');
 
       // Test dot rating click
       const buttons = Array.from(container.querySelectorAll('button'));

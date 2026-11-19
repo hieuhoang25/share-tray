@@ -7,9 +7,9 @@ export default function AppLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex-1 flex flex-col pb-20 w-full">
+    <div className="flex-1 flex flex-col pb-20 w-full bg-surface text-ink">
       <main className="flex-1 w-full">{children}</main>
-      <BottomNav theme="dark" />
+      <BottomNav theme="light" />
     </div>
   );
 }

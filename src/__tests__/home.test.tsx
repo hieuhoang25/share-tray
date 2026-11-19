@@ -30,31 +30,36 @@ describe('Home Page (Screen 1 - 01-home.html)', () => {
     });
 
     // Check header
-    expect(container.textContent).toContain('SHARE TRAY');
-    expect(container.textContent).toContain('HUNGRY? GO HERE.');
-    expect(container.textContent).toContain('PHỞ BÒ');
+    expect(container.textContent).toContain('mâm');
+    expect(container.textContent).toContain('Hungry? Go here.');
+    expect(container.textContent).toContain('Phở bò');
     expect(container.textContent).toContain('Phở Bà Tâm');
     expect(container.textContent).toContain('45,000₫ · about $1.70');
 
-    // Check SVG phở illustration (96x96)
-    const svg = container.querySelector('svg[width="96"][height="96"]');
+    // Check SVG phở illustration (92x92)
+    const svg = container.querySelector('svg[width="92"][height="92"]');
     expect(svg).not.toBeNull();
 
-    // Check DarkCard WHY THIS ONE, WHY NOW with yellow bullets
-    expect(container.textContent).toContain('WHY THIS ONE, WHY NOW');
+    // Check Why this one, why now section with reasons
+    expect(container.textContent).toContain('Why this one, why now');
     expect(container.textContent).toContain(
       'Phở is a breakfast dish here. This pot usually sells out before 10:30.'
     );
 
+    // Check Happening now card
+    expect(container.textContent).toContain('Happening now · 350 m from you');
+    expect(container.textContent).toContain('A table sits down in 25 minutes');
+    expect(container.textContent).toContain('See who is at the table');
+
     // Check Passport section
-    expect(container.textContent).toContain('YOUR FOOD PASSPORT');
+    expect(container.textContent).toContain('Your food passport');
     expect(container.textContent).toContain('3 of 12 dishes');
     expect(container.textContent).toContain(
       'Each stamp is signed by the local whose favourite you ate. Linh and Hùng wrote back to you.'
     );
 
     // Check Vietnamese footer link
-    expect(container.textContent).toContain('Bạn là người Việt? Thêm quán quen của bạn →');
+    expect(container.textContent).toContain('Bạn là người Việt? Thêm quán quen của bạn');
   });
 
   it('switches to gentle level and updates recommendation to bánh mì', async () => {
@@ -70,7 +75,7 @@ describe('Home Page (Screen 1 - 01-home.html)', () => {
       gentleBtn?.click();
     });
 
-    expect(container.textContent).toContain('BÁNH MÌ');
+    expect(container.textContent).toContain('Bánh mì');
     expect(container.textContent).toContain('Bánh mì Cô Nga');
     expect(container.textContent).toContain('25,000₫ · about $1');
     expect(container.textContent).toContain(
@@ -91,7 +96,7 @@ describe('Home Page (Screen 1 - 01-home.html)', () => {
       fearlessBtn?.click();
     });
 
-    expect(container.textContent).toContain('BÚN ỐC');
+    expect(container.textContent).toContain('Bún ốc');
     expect(container.textContent).toContain('Bún ốc Bà Lượng');
     expect(container.textContent).toContain('35,000₫ · about $1.30');
     expect(container.textContent).toContain(
@@ -99,21 +104,21 @@ describe('Home Page (Screen 1 - 01-home.html)', () => {
     );
   });
 
-  it('contains navigation cards for Borrow a Day and Together', async () => {
+  it('contains navigation cards for Happening now and Borrow a Day', async () => {
     await act(async () => {
       root.render(<HomePage />);
     });
 
-    expect(container.textContent).toContain('BORROW A LOCAL’S DAY');
-    expect(container.textContent).toContain('DON’T EAT ALONE');
+    expect(container.textContent).toContain('Happening now · 350 m from you');
+    expect(container.textContent).toContain('Borrow a local’s day');
 
     const links = Array.from(container.querySelectorAll('a'));
+    const tableLink = links.find((a) => a.getAttribute('href') === '/tables/1');
     const dayLink = links.find((a) => a.getAttribute('href') === '/days/linh-saturday');
-    const togetherLink = links.find((a) => a.getAttribute('href') === '/together');
     const contributeLink = links.find((a) => a.getAttribute('href') === '/contribute');
 
+    expect(tableLink).toBeDefined();
     expect(dayLink).toBeDefined();
-    expect(togetherLink).toBeDefined();
     expect(contributeLink).toBeDefined();
   });
 });

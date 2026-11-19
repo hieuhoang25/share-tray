@@ -16,6 +16,8 @@ import {
   Stepper,
   Avatar,
   SeatDots,
+  SeatLegend,
+  TableRing,
   PhraseCard,
 } from '@/components/ui';
 
@@ -25,39 +27,32 @@ export default function DevUIPage() {
   const [stepperVal, setStepperVal] = useState(2);
 
   return (
-    <div className="min-h-screen bg-gray-bg text-ink p-5 pb-28">
+    <div className="min-h-screen bg-surface text-ink p-5 pb-28">
       <div className="max-w-[480px] mx-auto space-y-8">
         <div>
-          <span className="text-xs font-semibold text-red uppercase tracking-wider">
-            Share Tray Styleguide
+          <span className="text-xs font-bold text-jade uppercase tracking-wider">
+            mâm · Design Tokens &amp; Components
           </span>
-          <h1 className="font-anton text-3xl text-ink">Component Showcase (/dev/ui)</h1>
-          <p className="text-sm text-muted">
-            All design tokens, 44px touch targets, SVG icons, and shared UI components.
+          <h1 className="text-3xl font-extrabold text-ink mt-1">Component Showcase (/dev/ui)</h1>
+          <p className="text-sm text-muted mt-1">
+            Warm palette (#F3F5F2, #0B5D4B, #FF7A59), Be Vietnam Pro sentence case, ≥44px touch targets.
           </p>
         </div>
 
         {/* Headers */}
         <section className="space-y-3">
-          <h2 className="font-anton text-xl border-b pb-1">ScreenHeader Variants</h2>
+          <h2 className="text-xl font-bold border-b border-border pb-1">ScreenHeader Variants</h2>
           <ScreenHeader
-            title="HUNGRY? GO HERE."
-            variant="dark"
-            subtitle="Hanoi · 28°C · Rain"
+            title="Phở Bà Tâm"
+            variant="jade"
+            subtitle="Beef noodle soup · Đống Đa, Hà Nội · 4 min walk"
             backHref="#"
-            backLabel="Back"
+            backLabel="All phở places"
           />
           <ScreenHeader
-            title="PHỞ BÀ TÂM"
-            variant="red"
-            subtitle="Pho · Ba Dinh · 4 min walk"
-            backHref="#"
-            backLabel="Dishes"
-          />
-          <ScreenHeader
-            title="EAT TOGETHER"
+            title="What are you craving?"
             variant="light"
-            subtitle="8 tables open"
+            subtitle="Ranked only by Vietnamese people"
             backHref="#"
             backLabel="Home"
           />
@@ -65,21 +60,21 @@ export default function DevUIPage() {
 
         {/* Buttons */}
         <section className="space-y-3">
-          <h2 className="font-anton text-xl border-b pb-1">Buttons (44px/48px/52px/56px)</h2>
+          <h2 className="text-xl font-bold border-b border-border pb-1">Buttons (44px / 48px / 52px / 56px)</h2>
           <div className="flex flex-col gap-3">
-            <Button variant="primary-yellow" size="lg" fullWidth>
-              Show me this place (Yellow CTA)
+            <Button variant="primary-coral" size="lg" fullWidth>
+              Show me this place (Coral CTA)
             </Button>
-            <Button variant="primary-red" size="lg" fullWidth>
-              Walk me through it (Red CTA)
+            <Button variant="primary-jade" size="lg" fullWidth>
+              Gửi quán quen (Jade CTA)
             </Button>
-            <Button variant="primary-ink" size="md" fullWidth>
-              Order Linh&apos;s usual in one tap
+            <Button variant="mint" size="md" fullWidth>
+              See who is at the table (Mint secondary)
             </Button>
             <Button variant="outline" size="md" fullWidth>
               Open a seat and eat with others
             </Button>
-            <Button variant="primary-red" size="call" fullWidth>
+            <Button variant="primary-coral" size="call" fullWidth>
               Call Minh Anh · free (56px)
             </Button>
             <div className="text-center">
@@ -90,11 +85,10 @@ export default function DevUIPage() {
 
         {/* Chips */}
         <section className="space-y-3">
-          <h2 className="font-anton text-xl border-b pb-1">Chips & Brave Level</h2>
-          <p className="text-xs text-muted">Dark theme chips:</p>
-          <div className="bg-ink p-4 rounded-xl">
+          <h2 className="text-xl font-bold border-b border-border pb-1">Chips &amp; Brave Levels</h2>
+          <p className="text-xs text-muted font-medium">Standard light chips:</p>
+          <div className="bg-white p-4 rounded-2xl border border-border">
             <ChipGroup
-              theme="dark"
               options={[
                 { value: 'gentle', label: 'Gentle' },
                 { value: 'curious', label: 'Curious' },
@@ -104,38 +98,30 @@ export default function DevUIPage() {
               onChange={setChipVal}
             />
           </div>
-          <p className="text-xs text-muted">Light theme chips:</p>
-          <div className="bg-white p-4 rounded-xl border border-border">
-            <ChipGroup
-              theme="light"
-              options={[
-                { value: 'gentle', label: 'All' },
-                { value: 'curious', label: 'See' },
-                { value: 'fearless', label: 'Useful' },
-              ]}
-              value={chipVal}
-              onChange={setChipVal}
-            />
-          </div>
         </section>
 
         {/* Cards */}
         <section className="space-y-3">
-          <h2 className="font-anton text-xl border-b pb-1">Cards & Callouts</h2>
+          <h2 className="text-xl font-bold border-b border-border pb-1">Cards &amp; Callouts</h2>
           <Card featured>
-            <h3 className="font-anton text-lg">Featured Card</h3>
-            <p className="text-sm text-muted">
-              Card with 16px radius, subtle border and authentic typography.
+            <h3 className="text-lg font-bold">Standard Card (20px radius)</h3>
+            <p className="text-sm text-muted mt-1">
+              Soft shadow, 20px radius, clean and warm feel.
             </p>
           </Card>
           <DarkCard>
-            <h3 className="font-anton text-lg text-yellow">ORDER &quot;THE USUAL&quot;</h3>
-            <p className="text-sm text-on-dark-1">
-              Cháu là bạn của Linh. Cho cháu như Linh hay ăn ạ.
+            <span className="text-xs font-bold text-mint-light uppercase tracking-wider">
+              Order &ldquo;the usual&rdquo;
+            </span>
+            <p className="text-lg font-bold text-white mt-1">
+              &ldquo;Cháu là bạn của Linh. Cho cháu như Linh hay ăn ạ.&rdquo;
+            </p>
+            <p className="text-sm text-mint-light mt-1">
+              Linh has eaten here for 6 years.
             </p>
           </DarkCard>
           <NoteBox>
-            <p className="font-semibold text-xs uppercase tracking-wider mb-1">
+            <p className="font-bold text-xs uppercase tracking-wider mb-1">
               Food Rule Warning
             </p>
             Your food rules: no peanuts · no pork. One dish hidden.
@@ -147,12 +133,12 @@ export default function DevUIPage() {
 
         {/* Steps and Ratings */}
         <section className="space-y-3">
-          <h2 className="font-anton text-xl border-b pb-1">Feedback, Scores & Numbers</h2>
+          <h2 className="text-xl font-bold border-b border-border pb-1">Feedback, Scores &amp; Numbers</h2>
           <Card>
             <NumberedStep
               number="1"
-              title="Broth simmered for 18 hours"
-              description="Clear bone broth with no artificial sweetness. Fragrant with star anise."
+              title="The broth"
+              description="Beef bones simmered overnight. Clear, deep and never sweet. 19 of 23 locals mention it first."
               meta="19 of 23 locals mention it"
             />
             <NumberedStep
@@ -169,7 +155,7 @@ export default function DevUIPage() {
           </Card>
 
           <Card className="flex flex-col items-center gap-3">
-            <span className="text-xs font-semibold uppercase text-muted">Dot Rating (44px Touch)</span>
+            <span className="text-xs font-bold uppercase text-muted">Dot Rating (44px Touch)</span>
             <DotRating value={rating} onChange={setRating} />
           </Card>
 
@@ -179,9 +165,9 @@ export default function DevUIPage() {
           </Card>
         </section>
 
-        {/* Avatars & Seat Dots */}
+        {/* Avatars, Seat Dots & Table Ring */}
         <section className="space-y-3">
-          <h2 className="font-anton text-xl border-b pb-1">Avatars & Seat Distribution</h2>
+          <h2 className="text-xl font-bold border-b border-border pb-1">Avatars, Seat Dots &amp; Table Ring</h2>
           <Card className="flex items-center gap-4">
             <Avatar name="Linh" role="local" size="lg" />
             <Avatar name="Kenji" role="traveller" size="lg" />
@@ -189,15 +175,21 @@ export default function DevUIPage() {
             <Avatar name="Anna" role="traveller" size="sm" />
           </Card>
 
-          <Card className="flex flex-col gap-2">
-            <span className="text-xs font-semibold text-muted">Seat Dots (Locals / Travellers / Free)</span>
+          <Card className="flex flex-col gap-3">
+            <span className="text-xs font-bold text-muted uppercase">Seat Legend</span>
+            <SeatLegend />
+            <span className="text-xs font-bold text-muted uppercase mt-2">Inline Seat Dots</span>
             <SeatDots locals={3} travellers={2} free={1} />
+            <span className="text-xs font-bold text-muted uppercase mt-2">Circular Table Ring (Mockup Hero)</span>
+            <div className="flex justify-center p-2">
+              <TableRing locals={3} travellers={2} free={1} />
+            </div>
           </Card>
         </section>
 
         {/* Phrase Card */}
         <section className="space-y-3">
-          <h2 className="font-anton text-xl border-b pb-1">Phrase Card (Show Vendor)</h2>
+          <h2 className="text-xl font-bold border-b border-border pb-1">Phrase Card (Show Vendor)</h2>
           <PhraseCard
             phraseVi="Quán phở Bà Tâm ở đâu ạ?"
             meaningEn="Where is Mrs. Tam's pho shop?"
@@ -206,7 +198,7 @@ export default function DevUIPage() {
         </section>
 
         <div className="pt-6 text-center">
-          <Link href="/" className="text-red-text font-bold text-sm underline">
+          <Link href="/" className="text-jade font-bold text-sm underline">
             ← Back to Home
           </Link>
         </div>

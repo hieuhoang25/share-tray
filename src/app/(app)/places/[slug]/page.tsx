@@ -135,12 +135,12 @@ export default function PlaceScreen({ params }: { params: Promise<{ slug: string
   };
 
   return (
-    <div className="w-full min-h-screen bg-white text-ink flex flex-col pb-24 font-sans">
-      {/* Red Header */}
-      <div className="flex flex-col gap-1.5 px-5 pt-3 pb-5 bg-red text-white">
+    <div className="w-full flex flex-col text-ink font-sans pb-10">
+      {/* Jade Dark Header (#083F34) */}
+      <div className="flex flex-col gap-1.5 px-5 pt-3 pb-6 rounded-b-[28px] bg-[#083F34] text-white">
         <Link
           href="/dishes"
-          className="flex items-center gap-1.5 h-11 text-sm font-medium text-white hover:text-white/80 transition-colors"
+          className="flex items-center gap-1.5 h-11 self-start text-sm font-semibold text-white hover:text-[#BFD8CF] transition-colors"
         >
           <svg
             aria-hidden="true"
@@ -158,122 +158,166 @@ export default function PlaceScreen({ params }: { params: Promise<{ slug: string
           All phở places
         </Link>
 
-        <h1 className="m-0 font-anton font-normal text-[42px] leading-[48px] text-yellow">
-          PHỞ BÀ TÂM
-        </h1>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-col gap-1.5">
+            <h1 className="m-0 text-[30px] leading-9 font-extrabold tracking-[-0.02em] text-white">
+              Phở Bà Tâm
+            </h1>
+            <span className="text-[14px] leading-5 text-[#BFD8CF]">
+              Beef noodle soup · Đống Đa, Hà Nội · 4 min walk
+            </span>
+          </div>
 
-        <span className="text-sm text-white">
-          Beef noodle soup · Đống Đa, Hà Nội · 4 min walk
-        </span>
+          {/* SVG Illustration (76x76) */}
+          <svg
+            aria-hidden="true"
+            width="76"
+            height="76"
+            viewBox="0 0 96 96"
+            className="shrink-0"
+          >
+            <circle cx="48" cy="48" r="46" fill="#FFFFFF" />
+            <circle cx="48" cy="48" r="38" fill="#E9B872" />
+            <path
+              d="M22 44c8-6 14 6 22 0s14 6 22 0"
+              fill="none"
+              stroke="#FFF6E0"
+              strokeWidth="4"
+              strokeLinecap="round"
+            />
+            <path
+              d="M24 56c8-6 14 6 22 0s14 6 22 0"
+              fill="none"
+              stroke="#FFF6E0"
+              strokeWidth="4"
+              strokeLinecap="round"
+            />
+            <ellipse cx="38" cy="34" rx="10" ry="5" fill="#9C4A3A" />
+            <ellipse cx="58" cy="38" rx="9" ry="4" fill="#9C4A3A" />
+            <circle cx="60" cy="62" r="4" fill="#2E8B57" />
+            <circle cx="52" cy="68" r="3" fill="#2E8B57" />
+            <circle cx="34" cy="66" r="3" fill="#2E8B57" />
+            <circle cx="66" cy="50" r="3" fill="#FF7A59" />
+          </svg>
+        </div>
 
         {/* 3 Badges */}
-        <div className="flex gap-1.5 flex-wrap mt-1.5">
-          <span className="px-2.5 py-1 rounded-[6px] bg-yellow text-[13px] font-bold text-ink">
+        <div className="flex gap-2 flex-wrap mt-2">
+          <span className="px-2.5 py-1.5 rounded-full bg-white/14 text-[12px] leading-4 font-semibold text-white">
             4.5 from 23 locals
           </span>
-          <span className="px-2.5 py-1 rounded-[6px] bg-ink text-[13px] font-semibold text-white">
+          <span className="px-2.5 py-1.5 rounded-full bg-white/14 text-[12px] leading-4 font-semibold text-white">
             Curious level
           </span>
-          <span className="px-2.5 py-1 rounded-[6px] bg-white text-[13px] font-semibold text-ink">
+          <span className="px-2.5 py-1.5 rounded-full bg-white/14 text-[12px] leading-4 font-semibold text-white">
             Open until 10:30
           </span>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col gap-[22px] p-5 flex-grow">
+      <div className="flex flex-col gap-6 p-5 flex-grow">
         {/* WHY LOCALS PRAISE IT */}
         <div className="flex flex-col gap-3">
-          <h2 className="m-0 font-anton font-normal text-[22px] tracking-[0.02em] text-ink">
-            WHY LOCALS PRAISE IT
+          <h2 className="m-0 text-[20px] leading-[26px] font-bold tracking-[-0.01em] text-ink">
+            Why locals praise it
           </h2>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3.5 p-4 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)]">
             {DEFAULT_PRAISES.map((p) => (
               <div key={p.n} className="flex gap-3">
-                <span className="font-anton font-normal text-[30px] leading-8 text-red w-[22px] shrink-0">
+                <span
+                  aria-hidden="true"
+                  className="w-8 h-8 shrink-0 rounded-full bg-[#E2F0EA] text-[#0B5D4B] font-bold text-[14px] flex items-center justify-center"
+                >
                   {p.n}
                 </span>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-[15px] font-bold text-ink">{p.title}</span>
-                  <span className="text-[13px] leading-[19px] text-ink">{p.text}</span>
+                  <span className="text-[14px] leading-5 font-bold text-ink">
+                    {p.title}
+                  </span>
+                  <span className="text-[14px] leading-5 text-[#4A5852]">
+                    {p.text}
+                  </span>
                 </div>
               </div>
             ))}
+
+            {/* The honest downside box */}
+            <div className="flex flex-col gap-0.5 p-[12px_14px] rounded-[14px] bg-[#FFE9E1]">
+              <span className="text-[13px] leading-[18px] font-bold text-[#8A2A12]">
+                The honest downside
+              </span>
+              <span className="text-[14px] leading-5 text-ink">
+                Shared tables, low stools and a crowd from 7:00 to 8:00. Mornings only.
+              </span>
+            </div>
           </div>
 
-          {/* Honest Downside Box */}
-          <div className="flex flex-col gap-0.5 p-[10px_12px] rounded-[10px] bg-gray-bg">
-            <span className="text-[13px] font-bold text-ink">The honest downside</span>
-            <span className="text-[13px] leading-[19px] text-ink">
-              Shared tables, low stools and a crowd from 7:00 to 8:00. Mornings only.
-            </span>
+          {/* Score Bars */}
+          <div className="flex flex-col gap-2.5 p-4 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)]">
+            <div className="flex items-center gap-3">
+              <span className="w-[60px] text-[13px] font-semibold text-ink">Price</span>
+              <div className="flex-1 h-2 rounded-[4px] bg-[#DCE2DE]">
+                <div className="w-[94%] h-2 rounded-[4px] bg-[#0B5D4B]" />
+              </div>
+              <span className="w-7 text-[14px] font-bold text-right text-ink">4.7</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="w-[60px] text-[13px] font-semibold text-ink">Service</span>
+              <div className="flex-1 h-2 rounded-[4px] bg-[#DCE2DE]">
+                <div className="w-[84%] h-2 rounded-[4px] bg-[#0B5D4B]" />
+              </div>
+              <span className="w-7 text-[14px] font-bold text-right text-ink">4.2</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="w-[60px] text-[13px] font-semibold text-ink">Space</span>
+              <div className="flex-1 h-2 rounded-[4px] bg-[#DCE2DE]">
+                <div className="w-[78%] h-2 rounded-[4px] bg-[#0B5D4B]" />
+              </div>
+              <span className="w-7 text-[14px] font-bold text-right text-ink">3.9</span>
+            </div>
           </div>
         </div>
 
-        {/* Score Bars */}
-        <div className="flex flex-col gap-3 p-4 border border-border rounded-xl">
-          <div className="flex items-center gap-2.5">
-            <span className="w-16 text-[13px] text-ink">Price</span>
-            <div className="flex-grow h-2 rounded-full bg-track">
-              <div className="w-[94%] h-2 rounded-full bg-ink" />
-            </div>
-            <span className="w-7 text-[13px] font-bold text-right text-ink">4.7</span>
-          </div>
-
-          <div className="flex items-center gap-2.5">
-            <span className="w-16 text-[13px] text-ink">Service</span>
-            <div className="flex-grow h-2 rounded-full bg-track">
-              <div className="w-[84%] h-2 rounded-full bg-ink" />
-            </div>
-            <span className="w-7 text-[13px] font-bold text-right text-ink">4.2</span>
-          </div>
-
-          <div className="flex items-center gap-2.5">
-            <span className="w-16 text-[13px] text-ink">Space</span>
-            <div className="flex-grow h-2 rounded-full bg-track">
-              <div className="w-[78%] h-2 rounded-full bg-ink" />
-            </div>
-            <span className="w-7 text-[13px] font-bold text-right text-ink">3.9</span>
-          </div>
-        </div>
-
-        {/* ORDER “THE USUAL” · WALK IN AS A FRIEND */}
-        <div className="flex flex-col gap-2.5 p-[18px] rounded-2xl bg-ink text-white">
-          <span className="text-[11px] font-semibold tracking-[0.06em] text-on-dark-2 uppercase">
-            ORDER “THE USUAL” · WALK IN AS A FRIEND
+        {/* ORDER “THE USUAL” · WALK IN AS A FRIEND (#0B5D4B) */}
+        <div className="flex flex-col gap-2.5 p-5 rounded-[24px] bg-[#0B5D4B] text-white">
+          <span className="text-[12px] leading-4 font-bold tracking-[0.08em] uppercase text-[#CDE5DC]">
+            Order “the usual” · walk in as a friend
           </span>
 
-          <span className="text-[22px] leading-[30px] font-bold text-yellow">
+          <span className="text-[20px] leading-7 font-bold text-white">
             “Cháu là bạn của Linh. Cho cháu như Linh hay ăn ạ.”
           </span>
 
-          <span className="text-[13px] leading-[19px] text-on-dark-1">
+          <span className="text-[14px] leading-5 text-[#CDE5DC]">
             I am Linh’s friend. The same as she always has, please.
           </span>
 
-          <div className="h-px bg-muted" />
+          <div className="h-px my-1 bg-white/22" />
 
-          <span className="text-sm leading-5 text-white">
+          <span className="text-[14px] leading-5 text-white">
             Linh’s usual: phở tái nạm, extra spring onion, one quẩy. She pays 55,000₫, so you do too.
           </span>
 
-          <span className="text-[13px] leading-[19px] text-on-dark-2">
+          <span className="text-[14px] leading-5 text-[#CDE5DC]">
             Linh has eaten here for 6 years. She hears that you came, and can write back.
           </span>
 
           <Link
             href={`/places/${slug}/order`}
-            className="flex items-center justify-center h-12 rounded-xl bg-yellow text-[15px] font-bold text-ink hover:bg-[#FFD966] transition-colors cursor-pointer"
+            className="flex items-center justify-center h-[52px] mt-1.5 rounded-[16px] bg-white text-[#0B5D4B] text-[16px] font-bold hover:bg-[#E2F0EA] transition-colors cursor-pointer"
           >
             Show this card at the shop
           </Link>
         </div>
 
         {/* AROUND HERE */}
-        <div className="flex flex-col gap-2.5">
-          <h2 className="m-0 font-anton font-normal text-[22px] tracking-[0.02em] text-ink">
-            AROUND HERE
+        <div className="flex flex-col gap-3">
+          <h2 className="m-0 text-[20px] leading-[26px] font-bold tracking-[-0.01em] text-ink">
+            Around here
           </h2>
 
           <div className="flex gap-2 flex-wrap">
@@ -285,10 +329,10 @@ export default function PlaceScreen({ params }: { params: Promise<{ slug: string
                   type="button"
                   onClick={() => setNearbyFilter(f.id)}
                   aria-pressed={active}
-                  className={`h-11 px-3.5 rounded-[22px] text-[13px] transition-colors cursor-pointer ${
+                  className={`h-11 px-4 rounded-[22px] text-[14px] transition-colors cursor-pointer ${
                     active
-                      ? 'border-2 border-ink bg-ink text-white font-bold'
-                      : 'border border-border-2 bg-white text-ink font-medium hover:border-ink'
+                      ? 'border-[1.5px] border-[#0B5D4B] bg-[#0B5D4B] text-white font-semibold'
+                      : 'border-[1.5px] border-[#DCE2DE] bg-white text-ink font-medium hover:border-[#0B5D4B]'
                   }`}
                 >
                   {f.label}
@@ -297,18 +341,19 @@ export default function PlaceScreen({ params }: { params: Promise<{ slug: string
             })}
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3.5 p-4 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)]">
             {filteredNearby.map((item, idx) => (
-              <div
-                key={idx}
-                className="flex gap-3 p-[10px_12px] border border-border rounded-xl"
-              >
-                <span className="w-[52px] shrink-0 font-anton font-normal text-[18px] leading-[22px] text-ink">
+              <div key={idx} className="flex gap-3">
+                <span className="w-[46px] shrink-0 p-[4px_6px] rounded-full bg-[#E2F0EA] text-[#0B5D4B] text-[11px] leading-4 font-bold text-center self-start">
                   {item.walk}
                 </span>
-                <div className="flex flex-col gap-0.5 min-w-0">
-                  <span className="text-sm font-bold text-ink">{item.name}</span>
-                  <span className="text-[13px] leading-[18px] text-muted">{item.note}</span>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[14px] leading-5 font-bold text-ink">
+                    {item.name}
+                  </span>
+                  <span className="text-[13px] leading-[19px] text-[#4A5852]">
+                    {item.note}
+                  </span>
                 </div>
               </div>
             ))}
@@ -317,8 +362,8 @@ export default function PlaceScreen({ params }: { params: Promise<{ slug: string
 
         {/* WHAT LOCALS SAY */}
         <div className="flex flex-col gap-3">
-          <h2 className="m-0 font-anton font-normal text-[22px] tracking-[0.02em] text-ink">
-            WHAT LOCALS SAY
+          <h2 className="m-0 text-[20px] leading-[26px] font-bold tracking-[-0.01em] text-ink">
+            What locals say
           </h2>
 
           <div className="flex flex-col gap-3">
@@ -327,29 +372,33 @@ export default function PlaceScreen({ params }: { params: Promise<{ slug: string
               return (
                 <div
                   key={r.id}
-                  className="flex flex-col gap-2 p-3.5 border border-border rounded-xl"
+                  className="flex flex-col gap-2.5 p-4 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)]"
                 >
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex items-center gap-3">
                     <div
                       aria-hidden="true"
-                      className="w-9 h-9 rounded-full bg-red text-white flex items-center justify-center text-sm font-bold shrink-0"
+                      className="w-11 h-11 shrink-0 rounded-full bg-[#0B5D4B] text-white font-bold text-[16px] flex items-center justify-center"
                     >
                       {r.initial}
                     </div>
-                    <div className="flex flex-col gap-px">
-                      <span className="text-sm font-bold text-ink">{r.who}</span>
-                      <span className="text-xs font-semibold text-red-text">{r.tie}</span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-[14px] leading-5 font-bold text-ink">
+                        {r.who}
+                      </span>
+                      <span className="text-[13px] leading-[19px] text-[#4A5852]">
+                        {r.tie}
+                      </span>
                     </div>
                   </div>
 
-                  <p className="m-0 text-[13px] leading-5 text-ink">
+                  <p className="m-0 text-[15px] leading-[22px] text-ink">
                     {isOriginal ? r.textVi : r.textEn}
                   </p>
 
                   <button
                     type="button"
                     onClick={() => toggleOriginal(r.id)}
-                    className="self-start text-xs text-muted hover:text-ink cursor-pointer pt-0.5"
+                    className="self-start text-[12px] leading-4 text-[#4A5852] hover:text-ink cursor-pointer pt-0.5"
                   >
                     {isOriginal
                       ? 'Show English translation · tap to see'
@@ -364,40 +413,48 @@ export default function PlaceScreen({ params }: { params: Promise<{ slug: string
         {/* OPEN SEATS AT THIS SHOP */}
         <Link
           href="/tables/1"
-          className="flex flex-col gap-1 p-3.5 border-2 border-ink rounded-xl text-ink hover:bg-gray-bg/50 transition-colors"
+          className="flex flex-col gap-1.5 p-4 rounded-[20px] bg-[#FFE9E1] text-ink shadow-none hover:bg-[#fedbd0] transition-colors"
         >
-          <span className="text-[11px] font-bold tracking-[0.06em] text-red-text uppercase">
-            OPEN SEATS AT THIS SHOP
+          <span className="text-[12px] leading-4 font-bold tracking-[0.08em] uppercase text-[#8A2A12]">
+            Open seats at this shop
           </span>
-          <span className="text-[15px] font-bold text-ink">
+          <span className="text-[18px] leading-6 font-bold text-ink">
             Tomorrow 08:00 · two seats free
           </span>
-          <span className="text-[13px] leading-[19px] text-muted">
+          <span className="text-[14px] leading-5 text-ink">
             One local and three travellers heading to Hội An are sharing breakfast here. Sit with them.
+          </span>
+          <span className="mt-1 text-[14px] font-bold text-[#8A2A12]">
+            See the table
           </span>
         </Link>
 
         {/* 3 Bottom CTAs */}
-        <div className="mt-auto flex flex-col gap-2 pt-2">
+        <div className="flex flex-col gap-2.5 pt-2">
           <Link
             href={`/places/${slug}/guide`}
-            className="flex items-center justify-center h-[52px] rounded-xl bg-red text-base font-bold text-white hover:bg-[#A31F17] transition-colors cursor-pointer"
+            className="flex items-center justify-center h-[56px] rounded-[16px] bg-[#0B5D4B] text-[16px] font-bold text-white hover:bg-[#083F34] transition-colors cursor-pointer"
           >
             Walk me through it, step by step
           </Link>
           <Link
             href="/tables/new"
-            className="flex items-center justify-center h-12 border border-ink rounded-xl text-[15px] font-semibold text-ink hover:bg-ink hover:text-white transition-colors cursor-pointer"
+            className="flex items-center justify-center h-[52px] border-[1.5px] border-[#12211D] rounded-[16px] bg-white text-[15px] font-bold text-[#12211D] hover:bg-[#F1F2F4] transition-colors cursor-pointer"
           >
             Open a seat and eat here with others
           </Link>
           <Link
             href="/help"
-            className="flex items-center justify-center h-11 text-sm font-semibold text-red-text hover:underline"
+            className="flex items-center justify-center h-11 text-[14px] font-semibold text-[#0B5D4B] hover:text-[#083F34]"
           >
             Stuck? Call a local
           </Link>
         </div>
+      </div>
+
+      {/* Footer text */}
+      <div className="mt-auto px-5 pt-6 pb-5 text-[12px] leading-4 text-[#4A5852] text-center">
+        mâm · eat together in Việt Nam
       </div>
     </div>
   );

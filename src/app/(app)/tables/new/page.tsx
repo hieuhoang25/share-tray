@@ -41,7 +41,7 @@ export default function NewTableScreen() {
   const placeName = where.trim() || 'Phở Bà Tâm';
   const summaryText = `${seats} ${
     seats === 1 ? 'open seat' : 'open seats'
-  } at ${placeName} ${currentWhenText}, for ${currentWhoText} looking for ${currentHopeText}. Everyone pays for their own bowl.`;
+  } at ${placeName}, ${currentWhenText}, for ${currentWhoText} looking for ${currentHopeText}.`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,12 +49,12 @@ export default function NewTableScreen() {
   };
 
   return (
-    <div className="w-full max-w-[390px] mx-auto min-h-screen bg-white text-ink flex flex-col font-sans pb-28">
-      {/* Dark Header */}
-      <div className="flex flex-col gap-1.5 px-5 pt-3 pb-5 bg-[#15171A] text-white">
+    <div className="w-full max-w-[390px] mx-auto min-h-screen bg-[#F3F5F2] text-[#12211D] flex flex-col font-sans pb-28">
+      {/* Header */}
+      <div className="flex flex-col gap-2 px-5 pt-3">
         <Link
           href="/together"
-          className="flex items-center gap-1.5 h-11 text-sm font-medium text-[#FFC72C] no-underline"
+          className="flex items-center gap-1.5 h-11 self-start text-[14px] font-semibold text-[#0B5D4B] no-underline hover:text-[#083F34] transition-colors"
         >
           <svg
             aria-hidden="true"
@@ -70,18 +70,18 @@ export default function NewTableScreen() {
           </svg>
           All tables
         </Link>
-        <h1 className="m-0 font-anton text-4xl leading-[46px] tracking-[0.01em]">
-          OPEN A SEAT.
+        <h1 className="m-0 text-[30px] leading-[36px] font-extrabold tracking-[-0.02em]">
+          Open a seat.
         </h1>
-        <span className="text-sm leading-5 text-[#D5D9DE]">
+        <span className="text-[15px] leading-[22px] text-[#4A5852]">
           You are going to eat anyway. Leave a chair open and see who sits down. Travellers and locals can both do this.
         </span>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-[18px] p-5 flex-grow">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-5 flex-grow">
         {/* Where are you eating? */}
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="where" className="text-[13px] font-bold text-[#15171A]">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="where" className="text-[14px] leading-5 font-bold">
             Where are you eating?
           </label>
           <input
@@ -90,13 +90,13 @@ export default function NewTableScreen() {
             placeholder="Phở Bà Tâm"
             value={where}
             onChange={(e) => setWhere(e.target.value)}
-            className="h-12 px-3.5 border border-[#C5C9CE] rounded-[12px] font-sans text-[15px] text-[#15171A] bg-white focus:outline-none focus:border-[#15171A]"
+            className="h-[52px] px-3.5 border-[1.5px] border-[#DCE2DE] rounded-[14px] bg-white font-sans text-[15px] text-[#12211D] focus:outline-none focus:border-[#0B5D4B]"
           />
         </div>
 
         {/* When? */}
         <div className="flex flex-col gap-2">
-          <span className="text-[13px] font-bold text-[#15171A]">When?</span>
+          <span className="text-[14px] leading-5 font-bold">When?</span>
           <div className="flex gap-2 flex-wrap">
             {WHEN_DEFS.map((w) => {
               const active = w.id === when;
@@ -106,10 +106,10 @@ export default function NewTableScreen() {
                   type="button"
                   onClick={() => setWhen(w.id)}
                   aria-pressed={active}
-                  className={`h-11 px-3.5 rounded-[22px] font-sans text-[13px] transition-colors cursor-pointer ${
+                  className={`h-11 px-4 rounded-[22px] font-sans text-[14px] transition-colors cursor-pointer ${
                     active
-                      ? 'border-2 border-[#15171A] bg-[#15171A] font-bold text-white'
-                      : 'border border-[#C5C9CE] bg-white font-normal text-[#15171A] hover:border-[#15171A]'
+                      ? 'border-[1.5px] border-[#0B5D4B] bg-[#0B5D4B] font-semibold text-white'
+                      : 'border-[1.5px] border-[#DCE2DE] bg-white font-medium text-[#12211D] hover:border-[#0B5D4B]'
                   }`}
                 >
                   {w.label}
@@ -120,23 +120,25 @@ export default function NewTableScreen() {
         </div>
 
         {/* How many open seats? */}
-        <div className="flex justify-between items-center">
-          <span className="text-[13px] font-bold text-[#15171A]">How many open seats?</span>
-          <div className="flex items-center gap-1.5">
+        <div className="flex justify-between items-center gap-3">
+          <span className="text-[14px] leading-5 font-bold">How many open seats?</span>
+          <div className="flex items-center gap-3.5">
             <button
               type="button"
               onClick={() => setSeats((s) => Math.max(1, s - 1))}
               aria-label="One seat fewer"
-              className="w-11 h-11 border border-[#C5C9CE] rounded-[22px] bg-white font-sans text-xl text-[#15171A] flex items-center justify-center cursor-pointer hover:border-[#15171A]"
+              className="w-12 h-12 rounded-full border-[1.5px] border-[#DCE2DE] bg-white font-sans text-[22px] font-semibold text-[#12211D] flex items-center justify-center cursor-pointer hover:border-[#0B5D4B]"
             >
               −
             </button>
-            <span className="w-7 text-center text-lg font-bold text-[#15171A]">{seats}</span>
+            <span className="min-w-[20px] text-center text-[24px] font-extrabold text-[#12211D]">
+              {seats}
+            </span>
             <button
               type="button"
               onClick={() => setSeats((s) => Math.min(9, s + 1))}
               aria-label="One seat more"
-              className="w-11 h-11 border border-[#C5C9CE] rounded-[22px] bg-white font-sans text-xl text-[#15171A] flex items-center justify-center cursor-pointer hover:border-[#15171A]"
+              className="w-12 h-12 rounded-full border-none bg-[#0B5D4B] font-sans text-[22px] font-semibold text-white flex items-center justify-center cursor-pointer hover:bg-[#083F34]"
             >
               +
             </button>
@@ -145,7 +147,7 @@ export default function NewTableScreen() {
 
         {/* Who is welcome? */}
         <div className="flex flex-col gap-2">
-          <span className="text-[13px] font-bold text-[#15171A]">Who is welcome?</span>
+          <span className="text-[14px] leading-5 font-bold">Who is welcome?</span>
           <div className="flex gap-2 flex-wrap">
             {WHO_DEFS.map((wh) => {
               const active = wh.id === who;
@@ -155,10 +157,10 @@ export default function NewTableScreen() {
                   type="button"
                   onClick={() => setWho(wh.id)}
                   aria-pressed={active}
-                  className={`h-11 px-3.5 rounded-[22px] font-sans text-[13px] transition-colors cursor-pointer ${
+                  className={`h-11 px-4 rounded-[22px] font-sans text-[14px] transition-colors cursor-pointer ${
                     active
-                      ? 'border-2 border-[#15171A] bg-[#15171A] font-bold text-white'
-                      : 'border border-[#C5C9CE] bg-white font-normal text-[#15171A] hover:border-[#15171A]'
+                      ? 'border-[1.5px] border-[#0B5D4B] bg-[#0B5D4B] font-semibold text-white'
+                      : 'border-[1.5px] border-[#DCE2DE] bg-white font-medium text-[#12211D] hover:border-[#0B5D4B]'
                   }`}
                 >
                   {wh.label}
@@ -170,7 +172,7 @@ export default function NewTableScreen() {
 
         {/* What are you hoping for? */}
         <div className="flex flex-col gap-2">
-          <span className="text-[13px] font-bold text-[#15171A]">What are you hoping for?</span>
+          <span className="text-[14px] leading-5 font-bold">What are you hoping for?</span>
           <div className="flex gap-2 flex-wrap">
             {HOPE_DEFS.map((hp) => {
               const active = hp.id === hope;
@@ -180,10 +182,10 @@ export default function NewTableScreen() {
                   type="button"
                   onClick={() => setHope(hp.id)}
                   aria-pressed={active}
-                  className={`h-11 px-3.5 rounded-[22px] font-sans text-[13px] transition-colors cursor-pointer ${
+                  className={`h-11 px-4 rounded-[22px] font-sans text-[14px] transition-colors cursor-pointer ${
                     active
-                      ? 'border-2 border-[#15171A] bg-[#15171A] font-bold text-white'
-                      : 'border border-[#C5C9CE] bg-white font-normal text-[#15171A] hover:border-[#15171A]'
+                      ? 'border-[1.5px] border-[#0B5D4B] bg-[#0B5D4B] font-semibold text-white'
+                      : 'border-[1.5px] border-[#DCE2DE] bg-white font-medium text-[#12211D] hover:border-[#0B5D4B]'
                   }`}
                 >
                   {hp.label}
@@ -194,16 +196,16 @@ export default function NewTableScreen() {
         </div>
 
         {/* YOUR TABLE CARD · WHAT OTHERS SEE */}
-        <div className="flex flex-col gap-2 p-3.5 rounded-[12px] bg-[#FFF3D1]">
-          <span className="text-xs font-bold tracking-[0.06em] text-[#5C4200]">
-            YOUR TABLE CARD · WHAT OTHERS SEE
+        <div className="flex flex-col gap-1.5 p-4 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)]">
+          <span className="text-[12px] leading-4 font-bold tracking-wider uppercase text-[#4A5852]">
+            Your table card · what others see
           </span>
-          <span className="text-base font-bold text-[#15171A]">[YOUR FIRST NAME] · [COUNTRY]</span>
-          <span className="text-[13px] leading-[19px] text-[#15171A]">
+          <span className="text-[17px] leading-6 font-bold">[YOUR FIRST NAME] · [COUNTRY]</span>
+          <span className="text-[13px] leading-[19px] text-[#4A5852]">
             [YOUR WORK] · speaks [LANGUAGES]
           </span>
-          <div className="flex flex-col gap-1.5 mt-1">
-            <label htmlFor="ask" className="text-[13px] font-semibold text-[#15171A]">
+          <div className="flex flex-col gap-2 mt-2">
+            <label htmlFor="ask" className="text-[14px] leading-5 font-bold">
               Ask me about…
             </label>
             <input
@@ -212,31 +214,36 @@ export default function NewTableScreen() {
               placeholder="the best ramen in my home town"
               value={askMeAbout}
               onChange={(e) => setAskMeAbout(e.target.value)}
-              className="h-12 px-3.5 border border-[#C9A94A] rounded-[12px] font-sans text-[15px] text-[#15171A] bg-white focus:outline-none"
+              className="h-[52px] px-3.5 border-[1.5px] border-[#DCE2DE] rounded-[14px] bg-white font-sans text-[15px] text-[#12211D] focus:outline-none focus:border-[#0B5D4B]"
             />
           </div>
         </div>
 
-        {/* Summary box */}
-        <div className="flex flex-col gap-1 p-3.5 rounded-[12px] bg-[#F1F2F4]">
-          <span className="text-sm font-bold text-[#15171A]">
+        {/* Dynamic summary box */}
+        <div className="flex flex-col gap-0.5 p-3.5 rounded-[14px] bg-[#E2F0EA] text-[#083F34]">
+          <span className="text-[14px] leading-5 font-bold">
             Your table, as others will see it
           </span>
-          <span className="text-[13px] leading-[19px] text-[#15171A]">{summaryText}</span>
+          <span className="text-[14px] leading-5">{summaryText}</span>
         </div>
 
-        <p className="m-0 text-xs leading-[18px] text-[#4A5059]">
+        <p className="m-0 text-[13px] leading-[19px] text-[#4A5852]">
           Người Việt mở bàn: hãy chọn quán quen của bạn. Khách tự trả phần ăn của họ, bạn có thêm bạn bè quốc tế.
         </p>
 
         {/* Open table button */}
         <button
           type="submit"
-          className="mt-auto h-[52px] border-none rounded-[12px] bg-[#C8281E] font-sans text-base font-bold text-white cursor-pointer hover:bg-[#A31F17] transition-colors"
+          className="flex items-center justify-center h-14 border-none rounded-[16px] bg-[#0B5D4B] font-sans text-[16px] font-bold text-white cursor-pointer hover:bg-[#083F34] transition-colors"
         >
           Open the table
         </button>
       </form>
+
+      {/* Footer */}
+      <div className="mt-auto px-5 pt-6 pb-5 text-[12px] leading-4 text-[#4A5852] text-center">
+        mâm · eat together in Việt Nam
+      </div>
     </div>
   );
 }

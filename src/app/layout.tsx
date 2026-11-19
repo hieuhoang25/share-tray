@@ -5,7 +5,7 @@ import { DevBar } from '@/components/ui';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Share Tray',
+  title: 'mâm · eat together in Vietnam',
   description: 'Authentic Vietnamese food discovery & shared dining tables',
 };
 
@@ -19,9 +19,9 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className="h-full">
-      <body className="min-h-full flex flex-col items-center bg-[#0d0e10] antialiased">
+      <body className="min-h-full flex flex-col items-center bg-[#E5E9E6] antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className="w-full max-w-[480px] min-h-screen flex flex-col bg-ink shadow-2xl relative">
+          <div className="w-full max-w-[480px] min-h-screen flex flex-col bg-surface text-ink shadow-xl relative">
             <DevBar />
             {children}
           </div>

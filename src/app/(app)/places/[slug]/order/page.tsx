@@ -60,12 +60,12 @@ export default function OrderScreen({ params }: { params: Promise<{ slug: string
   const totalText = `${fmt(total)} · about $${(total / 26000).toFixed(2)}`;
 
   return (
-    <div className="w-full min-h-screen bg-white text-ink flex flex-col font-sans">
-      {/* Red Header */}
-      <div className="flex flex-col gap-1.5 px-5 pt-3 pb-5 bg-red text-white">
+    <div className="w-full flex flex-col text-ink font-sans pb-10">
+      {/* Jade Dark Header (#083F34) */}
+      <div className="flex flex-col gap-1 px-5 pt-3 pb-5 rounded-b-[28px] bg-[#083F34] text-white">
         <Link
           href={`/places/${slug}`}
-          className="flex items-center gap-1.5 h-11 text-sm font-medium text-white hover:text-white/80 transition-colors"
+          className="flex items-center gap-1.5 h-11 self-start text-sm font-semibold text-white hover:text-[#BFD8CF] transition-colors"
         >
           <svg
             aria-hidden="true"
@@ -83,58 +83,64 @@ export default function OrderScreen({ params }: { params: Promise<{ slug: string
           Back
         </Link>
 
-        <span className="text-[11px] font-semibold tracking-[0.06em] text-pink-soft uppercase">
-          YOU ARE STANDING AT
+        <span className="text-[12px] leading-4 font-bold tracking-[0.08em] uppercase text-[#BFD8CF]">
+          You are standing at
         </span>
 
-        <h1 className="m-0 font-anton font-normal text-[42px] leading-[48px] text-yellow">
-          PHỞ BÀ TÂM
+        <h1 className="m-0 text-[30px] leading-9 font-extrabold tracking-[-0.02em] text-white">
+          Phở Bà Tâm
         </h1>
 
-        <span className="text-[13px] leading-[19px] text-white">
+        <span className="mt-1 text-[14px] leading-5 text-[#BFD8CF]">
           Recognised from your location. Nothing readable on the wall? This is everything they sell, translated by people who eat here.
         </span>
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col gap-4 px-5 pt-4 pb-6 flex-grow">
+      <div className="flex flex-col gap-3 px-5 pt-4 flex-grow">
         {/* Food rules box */}
-        <div className="flex flex-col gap-0.5 p-[12px_14px] rounded-xl bg-cream">
-          <span className="text-[13px] font-semibold text-cream-text">
+        <div className="flex flex-col gap-0.5 p-[12px_14px] rounded-[14px] bg-[#E2F0EA]">
+          <span className="text-[14px] leading-5 font-bold text-[#083F34]">
             Your food rules: no peanuts · no pork
           </span>
-          <span className="text-[13px] leading-[19px] text-ink">
+          <span className="text-[13px] leading-[19px] text-[#083F34]">
             Everything below is safe for you. One dish with pork is hidden.
           </span>
         </div>
 
-        {/* Order Linh's usual button */}
+        {/* Order Linh's usual button (#FF7A59) */}
         <button
           type="button"
           onClick={handleUsual}
-          className="flex flex-col items-start gap-0.5 p-[12px_14px] border-none rounded-xl bg-ink text-left text-white hover:bg-ink-2 transition-colors cursor-pointer"
+          className="flex flex-col items-start gap-0.5 p-[14px_16px] border-none rounded-[16px] bg-[#FF7A59] text-left text-[#12211D] hover:bg-[#ff8e72] transition-colors cursor-pointer"
         >
-          <span className="text-[15px] font-bold text-yellow">
+          <span className="text-[16px] leading-[22px] font-bold">
             Order Linh’s usual in one tap
           </span>
-          <span className="text-[13px] leading-[18px] text-on-dark-1">
+          <span className="text-[13px] leading-[18px]">
             Phở tái nạm and one quẩy · 55,000₫ · the vendor card says you are her friend
           </span>
         </button>
 
         {/* Menu Items List */}
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col px-4 py-1 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)]">
           {MENU_ITEMS.map((item) => {
             const count = qty[item.id] || 0;
             return (
               <div
                 key={item.id}
-                className="flex items-center gap-3 p-[10px_12px] border border-border rounded-xl bg-white"
+                className="flex items-center gap-2 py-3 border-b border-[#E6EBE8] last:border-b-0"
               >
-                <div className="flex flex-col gap-px flex-grow min-w-0">
-                  <span className="text-base font-bold text-ink">{item.vi}</span>
-                  <span className="text-[13px] text-muted">{item.en}</span>
-                  <span className="text-[13px] font-semibold text-ink">{fmt(item.price)}</span>
+                <div className="flex flex-col gap-px flex-1 min-w-0">
+                  <span className="text-[16px] leading-[22px] font-bold text-ink">
+                    {item.vi}
+                  </span>
+                  <span className="text-[13px] leading-[19px] text-[#4A5852]">
+                    {item.en}
+                  </span>
+                  <span className="text-[13px] leading-[18px] font-semibold text-[#0B5D4B]">
+                    {fmt(item.price)}
+                  </span>
                 </div>
 
                 {count > 0 && (
@@ -143,11 +149,11 @@ export default function OrderScreen({ params }: { params: Promise<{ slug: string
                       type="button"
                       onClick={() => setItemQty(item.id, count - 1)}
                       aria-label={`Remove one ${item.vi}`}
-                      className="w-11 h-11 shrink-0 border border-border-2 rounded-full bg-white text-xl font-normal text-ink flex items-center justify-center hover:bg-gray-bg transition-colors cursor-pointer"
+                      className="w-11 h-11 shrink-0 rounded-full border-[1.5px] border-[#DCE2DE] bg-white text-[20px] font-semibold text-ink flex items-center justify-center hover:border-ink transition-colors cursor-pointer"
                     >
                       −
                     </button>
-                    <span className="w-5 text-center text-base font-bold text-ink">
+                    <span className="min-w-[16px] text-center text-base font-bold text-ink">
                       {count}
                     </span>
                   </div>
@@ -157,7 +163,7 @@ export default function OrderScreen({ params }: { params: Promise<{ slug: string
                   type="button"
                   onClick={() => setItemQty(item.id, count + 1)}
                   aria-label={`Add one ${item.vi}`}
-                  className="w-11 h-11 shrink-0 border-none rounded-full bg-ink text-xl font-normal text-white flex items-center justify-center hover:bg-ink-2 transition-colors cursor-pointer"
+                  className="w-11 h-11 shrink-0 border-none rounded-full bg-[#0B5D4B] text-[20px] font-semibold text-white flex items-center justify-center hover:bg-[#083F34] transition-colors cursor-pointer"
                 >
                   +
                 </button>
@@ -167,35 +173,37 @@ export default function OrderScreen({ params }: { params: Promise<{ slug: string
         </div>
 
         {/* YOUR ORDER summary card */}
-        <div className="flex flex-col gap-2.5 p-4 rounded-2xl bg-ink text-white">
-          <span className="text-[11px] font-semibold tracking-[0.06em] text-on-dark-2 uppercase">
-            YOUR ORDER
+        <div className="flex flex-col gap-2.5 p-4 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)]">
+          <span className="text-[12px] leading-4 font-bold tracking-[0.08em] uppercase text-[#4A5852]">
+            Your order
           </span>
-          <span className="text-[15px] leading-[22px] text-white">{summary}</span>
+          <span className="text-[15px] leading-[22px] text-ink">{summary}</span>
 
-          <div className="flex justify-between items-baseline pt-1">
-            <span className="text-[13px] text-on-dark-2">Local price, total</span>
-            <span className="text-xl font-bold text-yellow">{totalText}</span>
+          <div className="flex items-baseline justify-between gap-3 pt-0.5">
+            <span className="text-[13px] leading-[19px] text-[#4A5852]">
+              Local price, total
+            </span>
+            <span className="text-[16px] font-bold text-ink">{totalText}</span>
           </div>
 
           <button
             type="button"
             onClick={() => setShowCard(!showCard)}
-            className="h-12 border-none rounded-xl bg-yellow text-[15px] font-bold text-ink hover:bg-[#FFD966] transition-colors cursor-pointer mt-1"
+            className="flex items-center justify-center h-12 border-[1.5px] border-[#12211D] rounded-[16px] bg-white text-[15px] font-bold text-[#12211D] hover:bg-gray-bg transition-colors cursor-pointer mt-1"
           >
             {showCard ? 'Hide the vendor card' : 'Show this to the vendor'}
           </button>
         </div>
 
-        {/* TURN YOUR PHONE TO THE VENDOR */}
+        {/* TURN YOUR PHONE TO THE VENDOR (#12211D) */}
         {showCard && (
-          <div className="flex flex-col gap-3 p-[18px] rounded-2xl bg-red text-white">
-            <span className="text-[11px] font-semibold tracking-[0.06em] text-pink-soft uppercase">
-              TURN YOUR PHONE TO THE VENDOR
+          <div className="flex flex-col gap-3 p-5 rounded-[24px] bg-[#12211D] text-white">
+            <span className="text-[12px] leading-4 font-bold tracking-[0.08em] uppercase text-[#C9D3CF]">
+              Turn your phone to the vendor
             </span>
 
-            <div className="flex flex-col gap-0.5">
-              <span className="text-2xl leading-[34px] font-bold text-white">
+            <div className="flex flex-col gap-1.5 p-4 rounded-[16px] bg-white text-[#12211D]">
+              <span className="text-[22px] leading-[30px] font-bold text-ink">
                 {isUsual
                   ? 'Cháu là bạn của Linh. Cho cháu như Linh hay ăn:'
                   : 'Cho cháu:'}
@@ -204,33 +212,31 @@ export default function OrderScreen({ params }: { params: Promise<{ slug: string
               {chosen.map((c) => (
                 <span
                   key={c.id}
-                  className="text-2xl leading-[34px] font-bold text-yellow"
+                  className="text-[22px] leading-[30px] font-bold text-[#0B5D4B]"
                 >
                   {qty[c.id]} {c.vi.toLowerCase()}
                 </span>
               ))}
 
-              <span className="text-lg leading-[26px] font-semibold mt-1.5 text-white">
+              <span className="text-[18px] leading-[26px] font-semibold text-ink mt-0.5">
                 Cháu không ăn được lạc và thịt lợn.
               </span>
-              <span className="text-lg leading-[26px] font-semibold text-white">
+              <span className="text-[18px] leading-[26px] font-semibold text-ink">
                 Tổng {fmtVi(total)}, đúng không ạ?
               </span>
             </div>
 
-            <div className="h-px bg-divider-red" />
-
-            <span className="text-[13px] text-pink-soft">
+            <span className="text-[14px] leading-5 text-[#C9D3CF]">
               Cô/chú bấm để trả lời giúp khách:
             </span>
 
-            <div className="grid grid-cols-3 gap-2">
+            <div className="flex gap-2">
               {REPLIES.map((r, idx) => (
                 <button
                   key={idx}
                   type="button"
                   onClick={() => setVendorReply(r.en)}
-                  className="h-12 border-none rounded-[10px] bg-white text-sm font-semibold text-ink hover:bg-gray-bg transition-colors cursor-pointer"
+                  className="flex-1 h-12 border-[1.5px] border-white rounded-[14px] bg-transparent text-[14px] font-bold text-white hover:bg-white/10 transition-colors cursor-pointer"
                 >
                   {r.vi}
                 </button>
@@ -240,30 +246,39 @@ export default function OrderScreen({ params }: { params: Promise<{ slug: string
             {vendorReply && (
               <div
                 role="status"
-                className="flex flex-col gap-0.5 p-[10px_12px] rounded-[10px] bg-white text-ink"
+                className="flex flex-col gap-0.5 p-[12px_14px] rounded-[14px] bg-[#FF7A59] text-[#12211D]"
               >
-                <span className="text-xs font-semibold text-muted">The vendor answered</span>
-                <span className="text-base font-semibold text-ink">{vendorReply}</span>
+                <span className="text-[12px] leading-4 font-bold">
+                  The vendor answered
+                </span>
+                <span className="text-[16px] leading-[22px] font-bold">
+                  {vendorReply}
+                </span>
               </div>
             )}
           </div>
         )}
+
+        {/* CTAs */}
+        <div className="flex flex-col gap-1 mt-1">
+          <Link
+            href={`/places/${slug}/guide`}
+            className="flex items-center justify-center h-[56px] rounded-[16px] bg-[#0B5D4B] text-[16px] font-bold text-white hover:bg-[#083F34] transition-colors cursor-pointer"
+          >
+            Food is here. How do I eat it?
+          </Link>
+          <Link
+            href="/help"
+            className="flex items-center justify-center h-11 text-[14px] font-semibold text-[#0B5D4B] hover:text-[#083F34]"
+          >
+            Call a local
+          </Link>
+        </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="mt-auto flex justify-between items-center gap-3 px-5 py-3.5 border-t border-border bg-white">
-        <Link
-          href={`/places/${slug}/guide`}
-          className="flex items-center h-11 text-[13px] font-semibold text-red-text hover:underline"
-        >
-          Food is here. How do I eat it?
-        </Link>
-        <Link
-          href="/help"
-          className="flex items-center justify-center h-11 px-4 border border-red-text rounded-[22px] text-sm font-semibold text-red-text hover:bg-red hover:text-white transition-colors cursor-pointer"
-        >
-          Call a local
-        </Link>
+      {/* Footer text */}
+      <div className="mt-auto px-5 pt-6 pb-5 text-[12px] leading-4 text-[#4A5852] text-center">
+        mâm · eat together in Việt Nam
       </div>
     </div>
   );

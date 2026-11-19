@@ -33,7 +33,7 @@ describe('Group A Screens (02-dishes -> 05-guide)', () => {
         root.render(<DishesScreen />);
       });
 
-      expect(container.textContent).toContain('WHAT ARE YOU CRAVING?');
+      expect(container.textContent).toContain('What are you craving?');
       expect(container.textContent).toContain('Phở');
       expect(container.textContent).toContain('Bún chả');
       expect(container.textContent).toContain('Ốc');
@@ -69,7 +69,7 @@ describe('Group A Screens (02-dishes -> 05-guide)', () => {
   });
 
   describe('Screen 3: Place Details (/places/:slug)', () => {
-    it('renders red header, why locals praise it, downside, score bars, usual card, around here, and CTAs', async () => {
+    it('renders header, why locals praise it, downside, score bars, usual card, around here, and CTAs', async () => {
       const slugPromise = Promise.resolve({ slug: 'pho-ba-tam' });
 
       await act(async () => {
@@ -77,13 +77,13 @@ describe('Group A Screens (02-dishes -> 05-guide)', () => {
       });
 
       expect(container.textContent).toContain('All phở places');
-      expect(container.textContent).toContain('PHỞ BÀ TÂM');
+      expect(container.textContent).toContain('Phở Bà Tâm');
       expect(container.textContent).toContain('4.5 from 23 locals');
       expect(container.textContent).toContain('Curious level');
       expect(container.textContent).toContain('Open until 10:30');
 
       // Praises & Downside
-      expect(container.textContent).toContain('WHY LOCALS PRAISE IT');
+      expect(container.textContent).toContain('Why locals praise it');
       expect(container.textContent).toContain('The broth');
       expect(container.textContent).toContain('The honest downside');
 
@@ -96,26 +96,30 @@ describe('Group A Screens (02-dishes -> 05-guide)', () => {
       expect(container.textContent).toContain('3.9');
 
       // Usual card
-      expect(container.textContent).toContain('ORDER “THE USUAL” · WALK IN AS A FRIEND');
-      expect(container.textContent).toContain('Cháu là bạn của Linh. Cho cháu như Linh hay ăn ạ.');
+      expect(container.textContent).toContain('Order “the usual” · walk in as a friend');
+      expect(container.textContent).toContain('“Cháu là bạn của Linh. Cho cháu như Linh hay ăn ạ.”');
       expect(container.textContent).toContain('Show this card at the shop');
 
       // Around here tabs
-      expect(container.textContent).toContain('AROUND HERE');
+      expect(container.textContent).toContain('Around here');
       expect(container.textContent).toContain('Văn Miếu (Temple of Literature)');
 
       // Reviews
-      expect(container.textContent).toContain('WHAT LOCALS SAY');
+      expect(container.textContent).toContain('What locals say');
       expect(container.textContent).toContain('Linh, 29');
 
       // Open seats
-      expect(container.textContent).toContain('OPEN SEATS AT THIS SHOP');
+      expect(container.textContent).toContain('Open seats at this shop');
       expect(container.textContent).toContain('Tomorrow 08:00 · two seats free');
+      expect(container.textContent).toContain('See the table');
 
       // 3 Bottom CTAs
       expect(container.textContent).toContain('Walk me through it, step by step');
       expect(container.textContent).toContain('Open a seat and eat here with others');
       expect(container.textContent).toContain('Stuck? Call a local');
+
+      // Footer
+      expect(container.textContent).toContain('mâm · eat together in Việt Nam');
     });
 
     it('toggles review language between translated and original', async () => {
@@ -147,18 +151,18 @@ describe('Group A Screens (02-dishes -> 05-guide)', () => {
         root.render(<OrderScreen params={slugPromise} />);
       });
 
-      expect(container.textContent).toContain('YOU ARE STANDING AT');
-      expect(container.textContent).toContain('PHỞ BÀ TÂM');
+      expect(container.textContent).toContain('You are standing at');
+      expect(container.textContent).toContain('Phở Bà Tâm');
       expect(container.textContent).toContain('Your food rules: no peanuts · no pork');
       expect(container.textContent).toContain('Order Linh’s usual in one tap');
 
       // Check menu items
       expect(container.textContent).toContain('Phở tái');
       expect(container.textContent).toContain('Quẩy');
-      expect(container.textContent).toContain('YOUR ORDER');
+      expect(container.textContent).toContain('Your order');
 
       // Vendor card
-      expect(container.textContent).toContain('TURN YOUR PHONE TO THE VENDOR');
+      expect(container.textContent).toContain('Turn your phone to the vendor');
       expect(container.textContent).toContain('Cháu không ăn được lạc và thịt lợn.');
       expect(container.textContent).toContain('Đúng rồi');
       expect(container.textContent).toContain('Hết món');
@@ -209,7 +213,7 @@ describe('Group A Screens (02-dishes -> 05-guide)', () => {
       });
 
       // Default: Find tab
-      expect(container.textContent).toContain('THE LAST 50 METRES');
+      expect(container.textContent).toContain('The last 50 metres');
       expect(container.textContent).toContain('Open and still serving · confirmed by a local 20 min ago');
       expect(container.textContent).toContain('Quán phở Bà Tâm ở đâu ạ?');
       expect(container.textContent).toContain('I’m here. Help me order');
@@ -223,7 +227,7 @@ describe('Group A Screens (02-dishes -> 05-guide)', () => {
         eatBtn?.click();
       });
 
-      expect(container.textContent).toContain('EAT IT LIKE A LOCAL');
+      expect(container.textContent).toContain('Eat it like a local');
       expect(container.textContent).toContain('Taste the broth first');
       expect(container.textContent).toContain('What is on the table (all free)');
       expect(container.textContent).toContain('Chanh');
@@ -240,7 +244,7 @@ describe('Group A Screens (02-dishes -> 05-guide)', () => {
         payBtn?.click();
       });
 
-      expect(container.textContent).toContain('PAY THE LOCAL PRICE');
+      expect(container.textContent).toContain('Pay the local price');
       expect(container.textContent).toContain('What locals paid here this month');
       expect(container.textContent).toContain('40,000–55,000₫');
       expect(container.textContent).toContain('For 55,000₫, hand over this');

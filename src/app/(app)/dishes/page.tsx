@@ -159,11 +159,11 @@ export default function DishesScreen() {
   const current = DISH_DATA[selectedDish] || DISH_DATA.pho;
 
   return (
-    <div className="w-full min-h-screen bg-white text-ink flex flex-col pb-24 font-sans">
-      {/* Dark Header */}
-      <div className="flex flex-col gap-3 p-5 bg-ink text-white">
-        <h1 className="m-0 font-anton font-normal text-[36px] leading-[42px] tracking-[0.01em] text-white">
-          WHAT ARE YOU CRAVING?
+    <div className="w-full flex flex-col text-ink font-sans pb-10">
+      {/* Top Section */}
+      <div className="flex flex-col gap-3 px-5 pt-6">
+        <h1 className="m-0 text-[30px] leading-9 font-extrabold tracking-[-0.02em] text-ink">
+          What are you craving?
         </h1>
 
         {/* Dish Chips */}
@@ -177,10 +177,10 @@ export default function DishesScreen() {
                 type="button"
                 onClick={() => setSelectedDish(id)}
                 aria-pressed={isActive}
-                className={`h-11 px-3.5 rounded-[22px] text-sm transition-colors cursor-pointer flex items-center justify-center ${
+                className={`h-11 px-4 rounded-[22px] text-sm transition-colors cursor-pointer flex items-center justify-center ${
                   isActive
-                    ? 'border-2 border-yellow bg-yellow text-ink font-bold'
-                    : 'border border-muted-2 bg-transparent text-white font-medium hover:border-white'
+                    ? 'border-[1.5px] border-[#0B5D4B] bg-[#0B5D4B] text-white font-semibold'
+                    : 'border-[1.5px] border-[#DCE2DE] bg-white text-ink font-medium hover:border-[#0B5D4B]'
                 }`}
               >
                 {dish.vi}
@@ -190,14 +190,14 @@ export default function DishesScreen() {
         </div>
 
         {/* Gloss text */}
-        <span className="text-[13px] leading-[19px] text-on-dark-1">
+        <span className="text-[15px] leading-[22px] text-[#4A5852]">
           {current.gloss}
         </span>
       </div>
 
       {/* Main Content */}
       <div className="flex flex-col gap-3 px-5 pt-4 flex-grow">
-        <p className="m-0 text-xs leading-[18px] text-muted">
+        <p className="m-0 text-[13px] leading-[19px] text-[#4A5852]">
           Ranked only by Vietnamese people who eat there. Level shows how easy a place is on a first visit.
         </p>
 
@@ -207,30 +207,40 @@ export default function DishesScreen() {
             <Link
               key={place.id}
               href={place.href}
-              className="flex flex-col gap-2 p-3.5 border border-border rounded-xl text-ink bg-white hover:border-ink transition-colors"
+              className="flex flex-col gap-2 p-4 rounded-[20px] bg-white text-ink shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)] hover:shadow-md transition-shadow"
             >
-              <div className="flex justify-between items-center gap-2">
-                <span className="text-[17px] font-bold text-ink">{place.name}</span>
-                <span className="px-2 py-0.5 rounded-[6px] bg-yellow text-sm font-bold text-ink shrink-0">
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-[17px] leading-6 font-bold text-ink">
+                  {place.name}
+                </span>
+                <span className="px-2.5 py-1 rounded-full bg-[#0B5D4B] text-[13px] leading-4 font-bold text-white shrink-0">
                   {place.score}
                 </span>
               </div>
 
-              <span className="text-[13px] text-muted">{place.area}</span>
+              <span className="text-[13px] leading-[19px] text-[#4A5852]">
+                {place.area}
+              </span>
 
               {/* Known For Box */}
-              <div className="flex gap-2 p-[8px_10px] rounded-lg bg-cream">
-                <span className="text-xs font-bold text-cream-text shrink-0">Known for</span>
-                <span className="text-[13px] leading-[18px] text-ink">{place.known}</span>
+              <div className="flex flex-col gap-0.5">
+                <span className="text-[12px] leading-4 font-bold tracking-[0.08em] uppercase text-[#4A5852]">
+                  Known for
+                </span>
+                <span className="text-[14px] leading-5 text-ink">
+                  {place.known}
+                </span>
               </div>
 
-              <span className="text-[13px] text-ink">{place.scores}</span>
+              <span className="text-[13px] leading-[19px] text-[#4A5852]">
+                {place.scores}
+              </span>
 
-              <div className="flex justify-between items-center gap-2">
-                <span className="text-xs font-semibold text-red-text">
+              <div className="flex items-center justify-between gap-3 pt-0.5">
+                <span className="text-[13px] font-semibold text-[#0B5D4B]">
                   {place.locals}
                 </span>
-                <span className="px-2 py-[3px] rounded-[6px] bg-ink text-[11px] font-semibold text-white">
+                <span className="px-2.5 py-1 rounded-full bg-[#E2F0EA] text-[12px] leading-4 font-bold text-[#0B5D4B]">
                   {place.level}
                 </span>
               </div>

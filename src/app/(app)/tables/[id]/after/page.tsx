@@ -41,12 +41,12 @@ export default function TableAfterScreen({ params }: { params: Promise<{ id: str
   };
 
   return (
-    <div className="w-full max-w-[390px] mx-auto min-h-screen bg-white text-ink flex flex-col font-sans pb-28">
-      {/* Red Header */}
-      <div className="flex flex-col gap-1.5 px-5 pt-3 pb-5 bg-[#C8281E] text-white">
+    <div className="w-full max-w-[390px] mx-auto min-h-screen bg-[#F3F5F2] text-[#12211D] flex flex-col font-sans pb-28">
+      {/* Header section */}
+      <div className="flex flex-col gap-2 px-5 pt-3">
         <Link
           href={`/tables/${id}/live`}
-          className="flex items-center gap-1.5 h-11 text-sm font-medium text-white no-underline"
+          className="flex items-center gap-1.5 h-11 self-start text-[14px] font-semibold text-[#0B5D4B] no-underline hover:text-[#083F34] transition-colors"
         >
           <svg
             aria-hidden="true"
@@ -62,23 +62,23 @@ export default function TableAfterScreen({ params }: { params: Promise<{ id: str
           </svg>
           Back
         </Link>
-        <h1 className="m-0 font-anton text-4xl leading-[46px] text-[#FFC72C]">
-          YOU ATE WITH FIVE PEOPLE.
+        <h1 className="m-0 text-[30px] leading-[36px] font-extrabold tracking-[-0.02em]">
+          You ate with five people.
         </h1>
-        <span className="text-sm leading-5 text-white">
+        <span className="text-[15px] leading-[22px] text-[#4A5852]">
           Keep the ones you liked. Nobody sees your choice unless they chose you too.
         </span>
       </div>
 
-      <div className="flex flex-col gap-4 p-4 sm:p-5 flex-grow">
+      <div className="flex flex-col gap-5 px-5 pt-4 flex-grow">
         {/* Table photo banner */}
-        <div className="h-[104px] rounded-[12px] bg-[#E2E4E7] flex items-center justify-center text-xs text-[#4A5059]">
+        <div className="h-[132px] box-border p-3 border-[1.5px] border-dashed border-[#9DBFB3] rounded-[16px] bg-[#E2F0EA] flex items-center justify-center text-[13px] leading-[18px] font-medium text-[#083F34] text-center">
           Table photo · Bún chả Ngõ 41 · 16 Nov
         </div>
 
-        {/* People kept / mutual matching list */}
-        <div className="flex flex-col gap-2">
-          {PEOPLE.map((p) => {
+        {/* Mutual matching list card */}
+        <div className="flex flex-col px-4 py-1 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)]">
+          {PEOPLE.map((p, idx) => {
             const isKept = !!kept[p.id];
             const status = isKept
               ? p.yes
@@ -89,13 +89,15 @@ export default function TableAfterScreen({ params }: { params: Promise<{ id: str
             return (
               <div
                 key={p.id}
-                className="flex items-center gap-3 p-3 border border-[#E2E4E7] rounded-[12px]"
+                className={`flex items-center gap-3 py-3 ${
+                  idx < PEOPLE.length - 1 ? 'border-b border-[#E6EBE8]' : ''
+                }`}
               >
-                <div className="flex flex-col gap-0.5 flex-grow min-w-0">
-                  <span className="text-[15px] font-bold text-[#15171A]">{p.name}</span>
-                  <span className="text-xs text-[#4A5059]">{p.note}</span>
+                <div className="flex flex-col gap-0.5 flex-1 min-w-0">
+                  <span className="text-[15px] leading-5 font-bold">{p.name}</span>
+                  <span className="text-[13px] leading-[19px] text-[#4A5852]">{p.note}</span>
                   {status && (
-                    <span role="status" className="text-xs font-semibold text-[#1F6B45]">
+                    <span role="status" className="text-[12px] leading-4 font-semibold text-[#0B5D4B]">
                       {status}
                     </span>
                   )}
@@ -104,10 +106,10 @@ export default function TableAfterScreen({ params }: { params: Promise<{ id: str
                 <button
                   onClick={() => toggleKept(p.id)}
                   aria-pressed={isKept}
-                  className={`h-11 px-3.5 shrink-0 rounded-[22px] font-sans text-[13px] transition-colors cursor-pointer ${
+                  className={`h-11 px-4 shrink-0 rounded-[22px] font-sans text-[14px] transition-colors cursor-pointer ${
                     isKept
-                      ? 'border-2 border-[#15171A] bg-[#15171A] font-bold text-[#FFC72C]'
-                      : 'border border-[#C5C9CE] bg-white font-semibold text-[#15171A] hover:border-[#15171A]'
+                      ? 'border-[1.5px] border-[#0B5D4B] bg-[#0B5D4B] font-semibold text-white'
+                      : 'border-[1.5px] border-[#12211D] bg-white font-semibold text-[#12211D] hover:bg-neutral-50'
                   }`}
                 >
                   {isKept ? 'Kept' : 'Keep in touch'}
@@ -119,7 +121,7 @@ export default function TableAfterScreen({ params }: { params: Promise<{ id: str
 
         {/* Kudos to host */}
         <div className="flex flex-col gap-2">
-          <span className="text-[13px] font-bold text-[#15171A]">
+          <span className="text-[14px] leading-5 font-bold">
             Leave Thảo, your host, one kind word
           </span>
           <div className="flex gap-2 flex-wrap">
@@ -130,10 +132,10 @@ export default function TableAfterScreen({ params }: { params: Promise<{ id: str
                   key={kudo}
                   onClick={() => setSelectedKudo(kudo)}
                   aria-pressed={active}
-                  className={`h-11 px-3.5 rounded-[22px] font-sans text-[13px] transition-colors cursor-pointer ${
+                  className={`h-11 px-4 rounded-[22px] font-sans text-[14px] transition-colors cursor-pointer ${
                     active
-                      ? 'border-2 border-[#15171A] bg-[#15171A] font-bold text-white'
-                      : 'border border-[#C5C9CE] bg-white font-normal text-[#15171A] hover:border-[#15171A]'
+                      ? 'border-[1.5px] border-[#0B5D4B] bg-[#0B5D4B] font-semibold text-white'
+                      : 'border-[1.5px] border-[#DCE2DE] bg-white font-medium text-[#12211D] hover:border-[#0B5D4B]'
                   }`}
                 >
                   {kudo}
@@ -143,60 +145,107 @@ export default function TableAfterScreen({ params }: { params: Promise<{ id: str
           </div>
         </div>
 
-        {/* Your table network */}
-        <div className="flex flex-col gap-2.5 p-4 rounded-[12px] bg-[#15171A] text-white">
-          <span className="text-[11px] font-semibold tracking-[0.06em] text-[#B8BDC4]">
-            YOUR TABLE NETWORK
+        {/* Your table network card */}
+        <div className="flex flex-col gap-3 p-5 rounded-[24px] bg-[#083F34] text-white">
+          <span className="text-[12px] leading-4 font-bold tracking-wider uppercase text-[#BFD8CF]">
+            Your table network
           </span>
-          <div className="grid grid-cols-3 gap-2">
-            <div className="flex flex-col gap-0.5">
-              <span className="font-anton text-[28px] text-[#FFC72C]">14</span>
-              <span className="text-xs text-[#D5D9DE]">people kept</span>
+          <div className="flex gap-3">
+            <div className="flex flex-col gap-0.5 flex-1">
+              <span className="text-[28px] leading-[34px] font-extrabold tracking-[-0.02em]">
+                14
+              </span>
+              <span className="text-[13px] leading-[18px] text-[#BFD8CF]">people kept</span>
             </div>
-            <div className="flex flex-col gap-0.5">
-              <span className="font-anton text-[28px] text-[#FFC72C]">6</span>
-              <span className="text-xs text-[#D5D9DE]">countries</span>
+            <div className="flex flex-col gap-0.5 flex-1">
+              <span className="text-[28px] leading-[34px] font-extrabold tracking-[-0.02em]">
+                6
+              </span>
+              <span className="text-[13px] leading-[18px] text-[#BFD8CF]">countries</span>
             </div>
-            <div className="flex flex-col gap-0.5">
-              <span className="font-anton text-[28px] text-[#FFC72C]">9</span>
-              <span className="text-xs text-[#D5D9DE]">tables shared</span>
+            <div className="flex flex-col gap-0.5 flex-1">
+              <span className="text-[28px] leading-[34px] font-extrabold tracking-[-0.02em]">
+                9
+              </span>
+              <span className="text-[13px] leading-[18px] text-[#BFD8CF]">tables shared</span>
             </div>
           </div>
-          <span className="text-[13px] leading-[19px] text-[#D5D9DE]">
+          <span className="text-[14px] leading-5 text-[#BFD8CF]">
             Every contact is saved with the meal you shared, so you never wonder where you met: “Kenji · bún chả · 16 Nov”.
           </span>
         </div>
 
         {/* Do not let it end here */}
-        <div className="flex flex-col gap-2">
-          <span className="text-[13px] font-bold text-[#15171A]">Do not let it end here</span>
+        <div className="flex flex-col gap-2.5">
+          <span className="text-[14px] leading-5 font-bold">Do not let it end here</span>
           <Link
-            href={`/tables/${id}`}
-            className="flex flex-col gap-0.5 p-3 sm:p-3.5 border border-[#E2E4E7] rounded-[12px] text-[#15171A] no-underline hover:border-[#15171A] transition-colors"
+            href="/tables/1"
+            className="flex items-center justify-between gap-3 p-4 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)] text-[#12211D] no-underline hover:shadow-md transition-shadow"
           >
-            <span className="text-sm font-bold">Thảo hosts a snail night on Friday</span>
-            <span className="text-[13px] text-[#4A5059]">
-              People from today’s table get the first seats.
-            </span>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[15px] leading-5 font-bold">
+                Thảo hosts a snail night on Friday
+              </span>
+              <span className="text-[13px] leading-[19px] text-[#4A5852]">
+                People from today’s table get the first seats.
+              </span>
+            </div>
+            <svg
+              aria-hidden="true"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#4A5852"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="shrink-0"
+            >
+              <path d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
           <Link
             href="/tables/new"
-            className="flex flex-col gap-0.5 p-3 sm:p-3.5 border border-[#E2E4E7] rounded-[12px] text-[#15171A] no-underline hover:border-[#15171A] transition-colors"
+            className="flex items-center justify-between gap-3 p-4 rounded-[20px] bg-white shadow-[0_1px_2px_rgba(18,33,29,0.06),0_8px_24px_rgba(18,33,29,0.04)] text-[#12211D] no-underline hover:shadow-md transition-shadow"
           >
-            <span className="text-sm font-bold">Kenji and Anna will be in Hội An next week</span>
-            <span className="text-[13px] text-[#4A5059]">
-              So will you. Open a table there for the three of you.
-            </span>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[15px] leading-5 font-bold">
+                Kenji and Anna will be in Hội An next week
+              </span>
+              <span className="text-[13px] leading-[19px] text-[#4A5852]">
+                So will you. Open a table there for the three of you.
+              </span>
+            </div>
+            <svg
+              aria-hidden="true"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#4A5852"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="shrink-0"
+            >
+              <path d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
         </div>
 
         {/* CTA */}
         <Link
           href="/together"
-          className="mt-auto flex items-center justify-center h-[52px] rounded-[12px] bg-[#15171A] text-base font-bold text-[#FFC72C] no-underline hover:bg-[#22262B] transition-colors"
+          className="flex items-center justify-center h-14 rounded-[16px] bg-[#0B5D4B] text-[16px] font-bold text-white no-underline hover:bg-[#083F34] transition-colors"
         >
           Find my next table
         </Link>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-auto px-5 pt-6 pb-5 text-[12px] leading-4 text-[#4A5852] text-center">
+        mâm · eat together in Việt Nam
       </div>
     </div>
   );
